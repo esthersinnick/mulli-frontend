@@ -69,13 +69,13 @@ Tournament:
 | -------------------------       | -------------------- | ----------- | ------------------------------------------------------------ |
 | `/`                             | LandingPage          | public      | Home page, signup form, login form,                          |
 | `/not-found`                    | NotFoundPage         | public      | Not found page                                               |
-| `/challenges`                      | ChallengeListPage        | user only   | Shows all challenges in a list                                  |
-| `/challenges/:challengeId`             | ChallengeDetailPage      | user only   | Shows the details of a Challenge                                 |
+| `/challenges`                   | ChallengeListPage        | user only   | Shows all challenges in a list                                  |
+| `/challenges/:challengeId`      | ChallengeDetailPage      | user only   | Shows the details of a Challenge                                 |
 | `/dashboard/:userId`            | DashboardPage        | user only   | Shows the details of a user and all user's challenges           |
 | `/profile/:id`                  | ProfilePage          | user only   | Profile form for update                                      |
-| `/challenges/manager`              | ChallengesManagerPage   | admin only  | Shows all challenges in lists based on their status             |
-| `/challenges/:challengeId/add`         | AddChallengePage         | admin only  | Form for add a new Challenge                                     |
-| `/challenges/:challengeId/edit`        | AddChallengePage         | admin only  | Form for edit a Challenge                                        |
+| `/challenges/manager`           | ChallengesManagerPage   | admin only  | Shows all challenges in lists based on their status             |
+| `/challenges/:challengeId/add`  | AddChallengePage         | admin only  | Form for add a new Challenge                                     |
+| `/challenges/:challengeId/edit` | AddChallengePage         | admin only  | Form for edit a Challenge                                        |
 
 
 
@@ -114,12 +114,14 @@ Tournament:
 
 - Challenges Service
   - getAllChallenges()
+  - getOneChallenge()
   - AddOneChallenge(newChallenge)
   - UpdateChallenge(id, updateChallenge)
   - DeleteOneChallenge(id)
   
 - Art Service 
   - getAllArts()
+  - getOneArt()
   - AddOneArt(newArt)
   - UpdateArt(id, updateArt)
   - DeleteOneArt(id)
@@ -136,7 +138,7 @@ User model
 
 ```javascript
 {
-  type:Enum, //(user / admin)
+  isAdmin:boolean,
   name:String,
   username:String ,
   email:String, // required & unique
@@ -153,14 +155,13 @@ Challenge model
 ```javascript
  {
    name:String,
-   type:String,
    startDate:String,
    endDate: String,
    startVotingDate:String,
    endVotingDate: String,
-   illustrators: Number,
    description: String,
-   creator:  [{type: Schema.Types.ObjectId,ref:'User'}],
+   creator:  {type: Schema.Types.ObjectId,ref:'User'},
+   illustrators: Number,
    totalVotes: Number
  }
 ```
@@ -169,12 +170,12 @@ Art model
 
 ```javascript
 {
-  user: [{type: Schema.Types.ObjectId,ref:'User'}],
-  challenge: [{type: Schema.Types.ObjectId,ref:'Challenge'}],
-  image: String,
-  votes: [userIDs],
+  user: {type: Schema.Types.ObjectId,ref:'User'},
+  challenge: {type: Schema.Types.ObjectId,ref:'Challenge'},
+  image: String, 
+  votes: [{type: Schema.Types.ObjectId,ref:'User'}],
   rankingPosition: Number,
-  uploadDate: String
+  //uploadDate: String
 }
 ```
 
@@ -184,23 +185,24 @@ Art model
 
 ## API Endpoints (backend routes)
 
-| HTTP Method | URL                         | Request Body                 | Success status | Error Status | Description                                                  |
-| ----------- | --------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
-| GET         | /auth/profile               | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
-| POST        | /auth/signup                | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
-| POST        | /auth/login                 | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password challenges (404), then stores user in session |
-| POST        | /auth/logout                | (empty)                      | 204            | 400          | Logs out the user                                            |
-| GET         | /challenges                    |                              |                | 400          | Show all challenges                                             |
-| POST        | /challenges/add                | {}                           | 201            | 400          | Create and save a new challenge                                  |
-| GET         | /challenges/:challengeId           | {id}                         |                |              | Show specific challenge                                          |
-| GET         | /challenges/:challengeId/edit/     |                              |                |              | get info and fill form                                       |
-| PUT         | /challenges/:challengeId/edit/     | {challengeUpdated}               | 200            | 400          | edit challenge                                                   |
-| PUT         | /challenges/:artId/edit        | {artId, artUpdated}          |                |              | edit art (add like)                                          |
-| DELETE      | /challenges/:challengeId/delete    | {challengeId}                    | 201            | 400          | delete challenge                                                 |
-| GET         | /dashboard/:userId          | {userId}                     |                | 400          | show user data, his arts and the challenges has played          |
-| GET         | /profile/:userId            | {userId}                     |                |              | show a form filled with the user info                        |
-| PUT         | /profile/:userId/edit       | {userId, userUpdated}        |                |              | edit user                                                    |
-| PUT         | /profile/:artId/edit        | {artId, artUpdated}          |                |              | edit art (update image)                                      |
+| HTTP Method | URL                                           | Request Body                 | Success status | Error Status | Description                                                  |
+| ----------- | --------------------------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
+| GET         | /dashboard                                    | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
+| GET         | /dashboard/:userId                            | {userId}                     |                | 400          | show user data, his arts and the challenges has played          |
+| GET         | /dashboard/profile                            | Saved session                |                |              | show a form filled with the user info                        |
+| PUT         | /dashboard/profile/edit                       | {userUpdate}                 |                |              | edit user data                                                   |
+| PUT         | /dashboard/profile/password/edit              | {newPassword}                |                |              | edit password                                                    |
+| GET         | /dashboard/art/add                            | {artId, artUpdated}          |                |              | add art                                          |
+| DELETE      | /dashboard/art/:artId/delete                  | {artId, artUpdated}          |                |              | edit art (update image)                                      |
+| POST        | /auth/signup                                  | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
+| POST        | /auth/login                                   | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password challenges (404), then stores user in session |
+| POST        | /auth/logout                                  | (empty)                      | 204            | 400          | Logs out the user                                            |
+| GET         | /challenges                                   |                              |                | 400          | Show all challenges                                             |
+| POST        | /challenges/add                               | {}                           | 201            | 400          | Create and save a new challenge                                  |
+| GET         | /challenges/:challengeId                      | {id}                         |                |              | Show specific challenge                                          |
+| GET         | /challenges/:challengeId/edit/                |                              |                |              | get info and fill form                                       |
+| PUT         | /challenges/:challengeId/edit/                | {challengeUpdated}           | 200            | 400          | edit challenge                                                   |
+| DELETE      | /challenges/:challengeId/delete               | {challengeId}                | 201            | 400          | delete challenge                                                 |
 
 
 
@@ -224,11 +226,3 @@ Art model
 ### Slides
 
 [Slides Link](http://slides.com)
-
-
-
-
-
-
-
-

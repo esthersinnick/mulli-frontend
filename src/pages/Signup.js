@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import auth from '../services/auth-service';
+import withAuth from '../components/withAuth';
 
 class Signup extends Component {
 
   state = {
-    username: '',
+    email: '',
     password: '',
   };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const username = this.state.username;
+    const email = this.state.email;
     const password = this.state.password;
 
-    auth.signup({ username, password })
+    this.props.signup({ email, password })
       .then( (user) => {
         console.log(user)
         this.setState({
-            username: '',
+            email: '',
             password: '',
         });
       })
@@ -32,12 +32,12 @@ class Signup extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
       <>
         <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='username'>Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
+          <label htmlFor='email'>Email:</label>
+          <input id='email' type='email' name='email' value={email} onChange={this.handleChange}/>
           <label htmlFor='password'>Password:</label>
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Signup' />
@@ -52,4 +52,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withAuth(Signup);
