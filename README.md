@@ -187,13 +187,11 @@ Art model
 
 | HTTP Method | URL                                           | Request Body                 | Success status | Error Status | Description                                                  |
 | ----------- | --------------------------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
-| GET         | /dashboard                                    | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
 | GET         | /dashboard/:userId                            | {userId}                     |                | 400          | show user data, his arts and the challenges has played          |
-| GET         | /dashboard/profile                            | Saved session                |                |              | show a form filled with the user info                        |
-| PUT         | /dashboard/profile/edit                       | {userUpdate}                 |                |              | edit user data                                                   |
-| PUT         | /dashboard/profile/password/edit              | {newPassword}                |                |              | edit password                                                    |
-| GET         | /dashboard/art/add                            | {artId, artUpdated}          |                |              | add art                                          |
-| DELETE      | /dashboard/art/:artId/delete                  | {artId, artUpdated}          |                |              | edit art (update image)                                      |
+| GET         | /dashboard                                    | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
+| GET         | /profile                                      | Saved session                |                |              | show a form filled with the user info                        |
+| PUT         | /profile/edit                                 | {userUpdate}                 |                |              | edit user data                                                   |
+| PUT         | /profile/password/edit                        | {newPassword}                |                |              | edit password                                                    |
 | POST        | /auth/signup                                  | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
 | POST        | /auth/login                                   | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password challenges (404), then stores user in session |
 | POST        | /auth/logout                                  | (empty)                      | 204            | 400          | Logs out the user                                            |
@@ -203,7 +201,8 @@ Art model
 | GET         | /challenges/:challengeId/edit/                |                              |                |              | get info and fill form                                       |
 | PUT         | /challenges/:challengeId/edit/                | {challengeUpdated}           | 200            | 400          | edit challenge                                                   |
 | DELETE      | /challenges/:challengeId/delete               | {challengeId}                | 201            | 400          | delete challenge                                                 |
-
+| GET         | /arts/add                                     | {}                           |                |                | add art                                          |
+| PUT         | /arts/:artId/update                           | {artId, artUpdated}          |                |              | edit art (update image)                                      |
 
 
 <br>
