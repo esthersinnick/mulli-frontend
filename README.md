@@ -13,50 +13,50 @@ El objetivo es crear un lugar virtual de reunión para todos los artistas, fomen
 
 ## User Stories
 
-- **Landing Page:** As an anon I can see the landing page with an intro, active match/es, how to and sign up/login form.
--  **Signup:** As an anon I can sign up in the platform so that I can start joining matches and manage my work.
--  **Login:** As a user/admin I can login to the platform so that I can start joining matches and manage my work.
+- **Landing Page:** As an anon I can see the landing page with an intro, active challenge/es, how to and sign up/login form.
+-  **Signup:** As an anon I can sign up in the platform so that I can start joining challenges and manage my work.
+-  **Login:** As a user/admin I can login to the platform so that I can start joining challenges and manage my work.
 -  **404:** As an anon/user/admin I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault.
 
--  **Landing Page:** As a user/admin I can see the landing page with active match/es (and join them), and how to.
-- **User Dashboard:** As a user/admin I can access my dashboard to see all matches I'm joining/ have joined and update/edit images.
+-  **Landing Page:** As a user/admin I can see the landing page with active challenge/es (and join them), and how to.
+- **User Dashboard:** As a user/admin I can access my dashboard to see all challenges I'm joining/ have joined and update/edit images.
 - **User Profile:** As a user/admin I can edit/update my profile and add an avatar.
 -  **User Profile/Logout:** As a user/admin I can logout from the platform so no one else can use it.
--  **Matches List:** As a user/admin I can see a list of all matches.
--  **Matches Detail:** As a user/admin I can see the datil of a Matches with dynamic information based on its status (active, joined, voting,closed).
+-  **Challenges List:** As a user/admin I can see a list of all challenges.
+-  **Challenges Detail:** As a user/admin I can see the datil of a Challenges with dynamic information based on its status (active, joined, voting,closed).
 
-- **User Dashboard:** as an admin I can access to the matches manager
-- **Matches Manager:** as an admin I can create, edit and delete matches
+- **User Dashboard:** as an admin I can access to the challenges manager
+- **Challenges Manager:** as an admin I can create, edit and delete challenges
 
 
-### Matches Status
+### Challenges Status
 
--  **Draft:** These matches that I don't want to show anywhere
--  **Active:** These matches that are "joinable" and "submitable" for the users
--  **Voting:** Status for the matches that are closed for submissions (it allows to vote the arts you like)
--  **Closed:** Status for closed matches (it only allows to see the arts)
+-  **Draft:** These challenges that I don't want to show anywhere
+-  **Active:** These challenges that are "joinable" and "submitable" for the users
+-  **Voting:** Status for the challenges that are closed for submissions (it allows to vote the arts you like)
+-  **Closed:** Status for closed challenges (it only allows to see the arts)
 
 ## Backlog
 
-Matches:
+Challenges:
 - add a featured section for the top 3
 - add start and end date to update the status automatically.
-- add categories to matches.
-- matches search.
-- matches multi-images.
+- add categories to challenges.
+- challenges search.
+- challenges multi-images.
 - Add background images and dark/light option.
-- Add a preview for matches creator.
+- Add a preview for challenges creator.
 
 User profile:
-- add notifications for matches status changes, ranking...
+- add notifications for challenges status changes, ranking...
 - add points and rank system based on participation, votes...
 - convert users to admin based on their rank.
 - Users search.
-- Limit to 3 votes per user on each match
+- Limit to 3 votes per user on each challenge
 
 
 Tournament:
-- create periodic tournaments: pack of thematic matches with a winner based on the likes of all the matches.
+- create periodic tournaments: pack of thematic challenges with a winner based on the likes of all the challenges.
 
 
 <br>
@@ -69,13 +69,13 @@ Tournament:
 | -------------------------       | -------------------- | ----------- | ------------------------------------------------------------ |
 | `/`                             | LandingPage          | public      | Home page, signup form, login form,                          |
 | `/not-found`                    | NotFoundPage         | public      | Not found page                                               |
-| `/matches`                      | MatchListPage        | user only   | Shows all matches in a list                                  |
-| `/matches/:matchId`             | MatchDetailPage      | user only   | Shows the details of a Match                                 |
-| `/dashboard/:userId`            | DashboardPage        | user only   | Shows the details of a user and all user's matches           |
+| `/challenges`                      | ChallengeListPage        | user only   | Shows all challenges in a list                                  |
+| `/challenges/:challengeId`             | ChallengeDetailPage      | user only   | Shows the details of a Challenge                                 |
+| `/dashboard/:userId`            | DashboardPage        | user only   | Shows the details of a user and all user's challenges           |
 | `/profile/:id`                  | ProfilePage          | user only   | Profile form for update                                      |
-| `/matches/manager`              | MatchesManagerPage   | admin only  | Shows all matches in lists based on their status             |
-| `/matches/:matchId/add`         | AddMatchPage         | admin only  | Form for add a new Match                                     |
-| `/matches/:matchId/edit`        | AddMatchPage         | admin only  | Form for edit a Match                                        |
+| `/challenges/manager`              | ChallengesManagerPage   | admin only  | Shows all challenges in lists based on their status             |
+| `/challenges/:challengeId/add`         | AddChallengePage         | admin only  | Form for add a new Challenge                                     |
+| `/challenges/:challengeId/edit`        | AddChallengePage         | admin only  | Form for edit a Challenge                                        |
 
 
 
@@ -84,24 +84,24 @@ Tournament:
 ### Pages
   - LandingPage
   - NotFoundPage
-  - MatchListPage
-  - MatchDetailPage
+  - ChallengeListPage
+  - ChallengeDetailPage
   - DashboardPage
   - ProfilePage
-  - MatchsManagerPage
-  - AddMatchPage
-  - EditMatchPage 
+  - ChallengesManagerPage
+  - AddChallengePage
+  - EditChallengePage 
 
 ### Components
-  - MatchCard
+  - ChallengeCard
   - BurgerMenu
   - Wellcome
-  - CurrentMatchSection
-    - MatchDetail
+  - CurrentChallengeSection
+    - ChallengeDetail
   - HowTo
   - RegisterForm
-  - MatchForm
-  - MatchTable
+  - ChallengeForm
+  - ChallengeTable
   - EditProfile
 
 ## Services
@@ -112,11 +112,11 @@ Tournament:
   - auth.logout()
   - auth.me()
 
-- Matches Service
-  - getAllMatches()
-  - AddOneMatch(newMatch)
-  - UpdateMatch(id, updateMatch)
-  - DeleteOneMatch(id)
+- Challenges Service
+  - getAllChallenges()
+  - AddOneChallenge(newChallenge)
+  - UpdateChallenge(id, updateChallenge)
+  - DeleteOneChallenge(id)
   
 - Art Service 
   - getAllArts()
@@ -148,7 +148,7 @@ User model
 }
 ```
 
-Match model
+Challenge model
 
 ```javascript
  {
@@ -170,7 +170,7 @@ Art model
 ```javascript
 {
   user: [{type: Schema.Types.ObjectId,ref:'User'}],
-  challenge: [{type: Schema.Types.ObjectId,ref:'Match'}],
+  challenge: [{type: Schema.Types.ObjectId,ref:'Challenge'}],
   image: String,
   votes: [userIDs],
   rankingPosition: Number,
@@ -188,16 +188,16 @@ Art model
 | ----------- | --------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
 | GET         | /auth/profile               | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
 | POST        | /auth/signup                | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
-| POST        | /auth/login                 | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
+| POST        | /auth/login                 | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password challenges (404), then stores user in session |
 | POST        | /auth/logout                | (empty)                      | 204            | 400          | Logs out the user                                            |
-| GET         | /matches                    |                              |                | 400          | Show all matches                                             |
-| POST        | /matches/add                | {}                           | 201            | 400          | Create and save a new match                                  |
-| GET         | /matches/:matchId           | {id}                         |                |              | Show specific match                                          |
-| GET         | /matches/:matchId/edit/     |                              |                |              | get info and fill form                                       |
-| PUT         | /matches/:matchId/edit/     | {matchUpdated}               | 200            | 400          | edit match                                                   |
-| PUT         | /matches/:artId/edit        | {artId, artUpdated}          |                |              | edit art (add like)                                          |
-| DELETE      | /matches/:matchId/delete    | {matchId}                    | 201            | 400          | delete match                                                 |
-| GET         | /dashboard/:userId          | {userId}                     |                | 400          | show user data, his arts and the matches has played          |
+| GET         | /challenges                    |                              |                | 400          | Show all challenges                                             |
+| POST        | /challenges/add                | {}                           | 201            | 400          | Create and save a new challenge                                  |
+| GET         | /challenges/:challengeId           | {id}                         |                |              | Show specific challenge                                          |
+| GET         | /challenges/:challengeId/edit/     |                              |                |              | get info and fill form                                       |
+| PUT         | /challenges/:challengeId/edit/     | {challengeUpdated}               | 200            | 400          | edit challenge                                                   |
+| PUT         | /challenges/:artId/edit        | {artId, artUpdated}          |                |              | edit art (add like)                                          |
+| DELETE      | /challenges/:challengeId/delete    | {challengeId}                    | 201            | 400          | delete challenge                                                 |
+| GET         | /dashboard/:userId          | {userId}                     |                | 400          | show user data, his arts and the challenges has played          |
 | GET         | /profile/:userId            | {userId}                     |                |              | show a form filled with the user info                        |
 | PUT         | /profile/:userId/edit       | {userId, userUpdated}        |                |              | edit user                                                    |
 | PUT         | /profile/:artId/edit        | {artId, artUpdated}          |                |              | edit art (update image)                                      |
@@ -211,12 +211,9 @@ Art model
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com/b/gpSU0hrj/mulli) 
-or picture of your physical board
+[Trello board](https://trello.com/b/gpSU0hrj/mulli)
 
 ### Git
-
-The url to your repository and to your deployed project
 
 [Client repository Link](https://github.com/esthersinnick/mulli-frontend)
 
@@ -225,8 +222,6 @@ The url to your repository and to your deployed project
 [Deployed App Link](http://heroku.com)
 
 ### Slides
-
-The url to your presentation slides
 
 [Slides Link](http://slides.com)
 
