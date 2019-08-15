@@ -201,7 +201,10 @@ Art model
 | GET         | /challenges/:challengeId/edit/                |                              |                |              | get info and fill form                                       |
 | PUT         | /challenges/:challengeId/edit/                | {challengeUpdated}           | 200            | 400          | edit challenge                                                   |
 | DELETE      | /challenges/:challengeId/delete               | {challengeId}                | 201            | 400          | delete challenge                                                 |
-| GET         | /arts/add                                     | {}                           |                |                | add art                                          |
+| GET         | /arts/                                        | {}                           |                |              | add art                                          |
+| GET         | /arts/:userId                                 | {userId}                     |                |              | add art                                          |
+| GET         | /arts/:challengeId                            | {challengeId}                |                |              | add art                                          |
+| POST        | /arts/add                                     | {}                           |                |              | add art                                          |
 | PUT         | /arts/:artId/update                           | {artId, artUpdated}          |                |              | edit art (update image)                                      |
 
 

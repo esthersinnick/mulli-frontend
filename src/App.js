@@ -6,8 +6,9 @@ import Private from './pages/Private';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import AuthProvider from './contexts/auth-context';
-import PrivateRoute from './components/PrivateRoute'
-import AnonRoute from './components/AnonRoute'
+import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
+import AnonRoute from './components/AnonRoute';
 import './App.css';
 import 'milligram';
 
@@ -18,15 +19,15 @@ class App extends Component {
         <Router>
           <div className="container">
             <h1>Basic React Authentication</h1>
-            <Navbar />
             <Switch>
+              <PrivateRoute><Navbar /></PrivateRoute>
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
               <PrivateRoute path="/private" component={Private} />
+              <AdminRoute />
             </Switch>
           </div>
         </Router>
-
       </AuthProvider>
     )
   }
