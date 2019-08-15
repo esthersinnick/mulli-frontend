@@ -19,8 +19,8 @@ class App extends Component {
         <Router>
           <div className="container">
             <h1>Basic React Authentication</h1>
+            <Navbar />
             <Switch>
-              <PrivateRoute><Navbar /></PrivateRoute>
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
               <PrivateRoute path="/private" component={Private} />
