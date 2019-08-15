@@ -3,65 +3,37 @@ import axios from 'axios';
 class ArtService {
   constructor() {
     this.art = axios.create({
-      baseURL: process.env.REACT_APP_BACKEND_DOMAIN,
+      baseURL: process.env.REACT_APP_BACKEND_DOMAIN + '/arts',
       withCredentials: true,
     })
   }
 
-
-// get all arts
-  getAllArts(){
-    return this.art.get('/arts/')
-    .then(response => response)
-  };
-
-// get all arts of a user
-
-// getAllArts(userId){
-//   return this.art.get(`/arts/${userId}`)
-//   .then(response => response)
-// };
-
-// get all arts of a challenge
-
-// getAllArts(challengeId){
-//   return this.art.get(`/arts/${challengeId}`)
-//   .then(response => response)
-// };
-
-// add a new art
-
   addOneArt(newArt){
-    return this.appStore.post('/arts/add', newArt)
+    return this.art.post('/add', newArt)
     .then(response => response)
   };
 
+  getAllArts(){
+    return this.art.get('/')
+    .then(response => response)
+  };
 
-// edit an art
+  getAllArtsOfUser(userId){
+    return this.art.get(`/${userId}`)
+    .then(response => response)
+  };
+
+  getAllArtsOfChallenges(challengeId){
+    return this.art.get(`/${challengeId}`)
+    .then(response => response)
+  };
 
   updateArt(artId, updateArt){
-    return this.appStore.put(`/arts/${artId}/update`,updateArt)
+    return this.art.put(`/${artId}/update`,updateArt)
     .then(response => response);
-  }
+  };
 }
 
-//   getOneArt(){
+const artService = new ArtService();
 
-//   };
-
-//   
-
-//   updateArt(id, updateArt){
-//     return this.appStore.put(`/apps/${id}/update`,updateArt)
-//     .then(response => response);
-//   }
-
-//   deleteOneArt(id){
-//     return this.appStore.delete(`/apps/${id}/delete`)
-//     .then(response => response);
-//   }
-// }
-
-// const artService = new ArtService();
-
-// export default artService;
+export default artService;
