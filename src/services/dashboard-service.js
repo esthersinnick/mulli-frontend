@@ -1,25 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
 
 class DashboardService {
-  constructor(){
+  constructor() {
     this.dashboard = axios.create({
-      baseURL: process.env.REACT_APP_BACKEND_DOMAIN + '/dashboard'
+      baseURL: process.env.REACT_APP_BACKEND_DOMAIN + "/dashboard",
+      withCredentials: true
     });
   }
 
-  getMyDashboard(){
-    return this.dashboard.get('/')
-    .then(response => response) 
-  };
+  getMyDashboard() {
+    return this.dashboard.get("/").then(response => response);
+  }
 
-  getDashboardOfUser(userId){
-    return this.dashboard.get(`/${userId}`)
-    .then(response => response) 
-  };
+  getDashboardOfUser(userId) {
+    return this.dashboard.get(`/${userId}`).then(response => response);
+  }
 
-  editMyUser(){
-    return this.dashboard.get('/')
-    .then(response => response) 
+  editMyUser() {
+    return this.dashboard.get("/").then(response => response);
   }
 }
 

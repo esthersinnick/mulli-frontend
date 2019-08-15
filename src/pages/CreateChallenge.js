@@ -1,33 +1,41 @@
-import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom'
-import challengeService from '../services/challenges-service'
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import challengeService from "../services/challenges-service";
+import ChallengeForm from "../components/ChallengeForm";
 
 class CreateChallenge extends Component {
-
-
   state = {
-    name: '',
-    description: '',
-    startDate: '',
-    endDate: '',
-    startVotingDate: '',
-    endVotingDate: '',
-    creator: 'userId',
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+    startVotingDate: "",
+    endVotingDate: "",
     illustrators: 0,
-    totalVotes:0,
-    redirect: false,
-  }
+    totalVotes: 0
+  };
 
-  handleOnChange = (event) => {
-    const {id, value} = event.target
-    this.setState({
-      [id]: value,
-    })
-  }
-
-  handleSubmit = (event) => {
+  handleOnChange = event => {
     event.preventDefault();
-    const {name, description, startDate, endDate, startVotingDate, endVotingDate, creator, illustrators, totalVotes} = this.state
+    const { id, value } = event.target;
+    this.setState({
+      [id]: value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const {
+      name,
+      description,
+      startDate,
+      endDate,
+      startVotingDate,
+      endVotingDate,
+      creator,
+      illustrators,
+      totalVotes
+    } = this.state;
     const newChallenge = {
       name,
       description,
@@ -38,45 +46,41 @@ class CreateChallenge extends Component {
       creator,
       illustrators,
       totalVotes
-    }
+    };
 
-    challengeService.addOneChallenge(newChallenge)
-    .then(response => {
-      this.setState({
-        redirect:true
+    challengeService
+      .addOneChallenge(newChallenge)
+      .then(response => {
+        this.props.history.push("/");
       })
-    })
-    .catch(error => console.log(error));
-  }
+      .catch(error => console.log(error));
+  };
 
   render() {
-    const {name, description, startDate, endDate, startVotingDate, endVotingDate, redirect} = this.state
-    return (
-      <>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" placeholder="Name" value={name} onChange={this.handleOnChange} />
-          
-          <label htmlFor="name">Description</label>
-          <input type="text" id="description" placeholder="Description" value={description} onChange={this.handleOnChange} />
-          
-          <label htmlFor="startDate">Start date</label>
-          <input type="date" id="startDate" placeholder="startDate" value={startDate} onChange={this.handleOnChange} />
-          
-          <label htmlFor="endDate">End date</label>
-          <input type="date" id="endDate" placeholder="endDate" value={endDate} onChange={this.handleOnChange} />
+    const {
+      name,
+      description,
+      startDate,
+      endDate,
+      startVotingDate,
+      endVotingDate
+      // handleOnChange,
+      // handleSubmit
+    } = this.state;
 
-          <label htmlFor="startVotingDate">Start voting date</label>
-          <input type="date" id="startVotingDate" placeholder="startVotingDate" value={startVotingDate} onChange={this.handleOnChange} />
-          
-          <label htmlFor="endVotingDate">End date</label>
-          <input type="date" id="endVotingDate" placeholder="endVotingDate" value={endVotingDate} onChange={this.handleOnChange} />
-          <button type="submit">Add new Challenge</button>
-        </form>
-        {redirect ? <Redirect to='/' />: null}
-      </>
-    )
+    return (
+      <ChallengeForm
+        name={name}
+        description={description}
+        startDate={startDate}
+        endDate={endDate}
+        startVotingDate={startVotingDate}
+        endVotingDate={endVotingDate}
+        handleOnChange={this.handleOnChange}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
-export default CreateChallenge;
+export default withRouter(CreateChallenge);
