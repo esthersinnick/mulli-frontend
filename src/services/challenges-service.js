@@ -3,7 +3,7 @@ import axios from 'axios';
 class ChallengeService {
   constructor(){
     this.challenge = axios.create({
-      baseURL: 'http://localhost:4000/challenges'
+      baseURL: process.env.REACT_APP_BACKEND_DOMAIN + '/challenges'
     });
   }
 

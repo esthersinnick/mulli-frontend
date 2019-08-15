@@ -3,7 +3,7 @@ import axios from 'axios';
 class ArtService {
   constructor() {
     this.art = axios.create({
-      baseURL: 'http://localhost:4000/arts',
+      baseURL: process.env.REACT_APP_BACKEND_DOMAIN +'/arts',
       withCredentials: true,
     })
   }
