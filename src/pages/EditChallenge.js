@@ -86,6 +86,7 @@ class CreateChallenge extends Component {
             endVotingDate={moment(endVotingDate).format("YYYY-MM-DD")}
             handleOnChange={this.handleOnChange}
             handleSubmit={this.handleSubmit}
+            buttonText="Update challenge"
           />) : null
         }
       </>

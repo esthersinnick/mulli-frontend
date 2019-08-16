@@ -76,6 +76,7 @@ class CreateChallenge extends Component {
           endVotingDate={endVotingDate}
           handleOnChange={this.handleOnChange}
           handleSubmit={this.handleSubmit}
+          buttonText="Add new challenge"
         />
       </>
     );

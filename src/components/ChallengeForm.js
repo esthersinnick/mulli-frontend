@@ -9,7 +9,8 @@ const ChallengeForm = props => {
     startVotingDate,
     endVotingDate,
     handleOnChange,
-    handleSubmit
+    handleSubmit,
+    buttonText
   } = props;
 
   const submitForm = e => {
@@ -82,7 +83,7 @@ const ChallengeForm = props => {
         value={endVotingDate}
         onChange={changeInput}
       />
-      <button type="submit">Add new Challenge</button>
+      <button type="submit">{buttonText}</button>
     </form>
   );
 };
