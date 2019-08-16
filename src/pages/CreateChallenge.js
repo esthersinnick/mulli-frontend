@@ -17,11 +17,15 @@ class CreateChallenge extends Component {
 
   handleOnChange = event => {
     event.preventDefault();
-    const { id, value } = event.target;
+    const { name, value } = event.target;
     this.setState({
-      [id]: value
+      [name]: value
     });
   };
+
+  goToPreviousPage = () => {
+    this.props.history.goBack();
+  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -51,34 +55,29 @@ class CreateChallenge extends Component {
     challengeService
       .addOneChallenge(newChallenge)
       .then(response => {
-        this.props.history.push("/");
+        this.props.history.push("/challenges/manager");
       })
       .catch(error => console.log(error));
   };
 
   render() {
-    const {
-      name,
-      description,
-      startDate,
-      endDate,
-      startVotingDate,
-      endVotingDate
-      // handleOnChange,
-      // handleSubmit
-    } = this.state;
+    const { name, description, startDate, endDate, startVotingDate, endVotingDate } = this.state;
 
     return (
-      <ChallengeForm
-        name={name}
-        description={description}
-        startDate={startDate}
-        endDate={endDate}
-        startVotingDate={startVotingDate}
-        endVotingDate={endVotingDate}
-        handleOnChange={this.handleOnChange}
-        handleSubmit={this.handleSubmit}
-      />
+      <>
+        <h1>Create new challenge</h1>
+        <button onClick={this.goToPreviousPage}>Go Back</button>
+        <ChallengeForm
+          name={name}
+          description={description}
+          startDate={startDate}
+          endDate={endDate}
+          startVotingDate={startVotingDate}
+          endVotingDate={endVotingDate}
+          handleOnChange={this.handleOnChange}
+          handleSubmit={this.handleSubmit}
+        />
+      </>
     );
   }
 }
