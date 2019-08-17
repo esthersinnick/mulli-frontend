@@ -2,6 +2,7 @@ import React from "react";
 
 const ChallengeForm = props => {
   const {
+    status,
     name,
     description,
     startDate,
@@ -17,6 +18,7 @@ const ChallengeForm = props => {
     e.preventDefault();
     handleSubmit(e);
   };
+
   const changeInput = e => {
     e.preventDefault();
     handleOnChange(e);
@@ -24,6 +26,13 @@ const ChallengeForm = props => {
 
   return (
     <form onSubmit={submitForm}>
+
+      <label htmlFor="status">Status</label>
+      <select name="status" id="status" defaultValue={status} onChange={changeInput}>
+        <option>active</option>
+        <option>voting</option>
+        <option>closed</option>
+      </select>
       <label htmlFor="name">Name</label>
       <input
         type="text"

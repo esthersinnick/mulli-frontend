@@ -7,6 +7,7 @@ import moment from "moment";
 
 class CreateChallenge extends Component {
   state = {
+    status: "active",
     name: "",
     description: "",
     startDate: "",
@@ -28,6 +29,7 @@ class CreateChallenge extends Component {
       .getOneChallenge(challengeId)
       .then(response => {
         this.setState({
+          status: response.data.status,
           name: response.data.name,
           description: response.data.description,
           startDate: response.data.startDate,
@@ -50,8 +52,9 @@ class CreateChallenge extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { name, description, startDate, endDate, startVotingDate, endVotingDate } = this.state;
+    const { name, description, startDate, endDate, startVotingDate, endVotingDate, status } = this.state;
     const updateChallenge = {
+      status,
       name,
       description,
       startDate,
@@ -71,13 +74,14 @@ class CreateChallenge extends Component {
   };
 
   render() {
-    const { name, description, startDate, endDate, startVotingDate, endVotingDate } = this.state;
+    const { name, description, startDate, endDate, startVotingDate, endVotingDate, status } = this.state;
     return (
       <>
         <h1>Edit challenge</h1>
         <button onClick={this.goToPreviousPage}>Go Back</button>
         {name !== "" ? (
           <ChallengeForm
+            status={status}
             name={name}
             description={description}
             startDate={moment(startDate).format("YYYY-MM-DD")}

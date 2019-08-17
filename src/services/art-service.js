@@ -8,29 +8,34 @@ class ArtService {
     })
   }
 
-  addOneArt(newArt){
+  addOneArt(newArt) {
     return this.art.post('/add', newArt)
-    .then(response => response)
+      .then(response => response)
   };
 
-  getAllArts(){
+  getAllArts() {
     return this.art.get('/')
-    .then(response => response)
+      .then(response => response)
   };
 
-  getAllArtsOfUser(userId){
+  getAllArtsOfUser(userId) {
     return this.art.get(`/${userId}`)
-    .then(response => response)
+      .then(response => response)
   };
 
-  getAllArtsOfChallenges(challengeId){
+  getAllArtsOfChallenges(challengeId) {
     return this.art.get(`/${challengeId}`)
-    .then(response => response)
+      .then(response => response)
   };
 
-  updateArt(artId, updateArt){
-    return this.art.put(`/${artId}/update`,updateArt)
-    .then(response => response);
+  getOneArtOfUserAndChallenge(challengeId) {
+    return this.art.get(`/challenge/${challengeId}/user`)
+      .then(response => response);
+  }
+
+  updateArt(artId, updateArt) {
+    return this.art.put(`/${artId}/update`, updateArt)
+      .then(response => response);
   };
 }
 

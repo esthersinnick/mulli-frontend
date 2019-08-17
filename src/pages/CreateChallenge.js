@@ -5,6 +5,7 @@ import ChallengeForm from "../components/ChallengeForm";
 
 class CreateChallenge extends Component {
   state = {
+    status: "active",
     name: "",
     description: "",
     startDate: "",
@@ -17,6 +18,7 @@ class CreateChallenge extends Component {
 
   handleOnChange = event => {
     event.preventDefault();
+    console.log(event.nativeEvent)
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -30,6 +32,7 @@ class CreateChallenge extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const {
+      status,
       name,
       description,
       startDate,
@@ -41,6 +44,7 @@ class CreateChallenge extends Component {
       totalVotes
     } = this.state;
     const newChallenge = {
+      status,
       name,
       description,
       startDate,
@@ -55,19 +59,20 @@ class CreateChallenge extends Component {
     challengeService
       .addOneChallenge(newChallenge)
       .then(response => {
-        this.props.history.push("/challenges/manager");
+        this.props.history.goBack();
       })
       .catch(error => console.log(error));
   };
 
   render() {
-    const { name, description, startDate, endDate, startVotingDate, endVotingDate } = this.state;
+    const { status, name, description, startDate, endDate, startVotingDate, endVotingDate } = this.state;
 
     return (
       <>
         <h1>Create new challenge</h1>
         <button onClick={this.goToPreviousPage}>Go Back</button>
         <ChallengeForm
+          status={status}
           name={name}
           description={description}
           startDate={startDate}

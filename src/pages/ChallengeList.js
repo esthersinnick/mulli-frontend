@@ -51,16 +51,19 @@ class ChallengeList extends Component {
             {challenges.map(challenge => {
               return (
                 <li key={challenge._id}>
-                  <h3>{challenge.name}</h3>
+                  <Link to={`/challenges/${challenge._id}`} ><h3>{challenge.name}</h3></Link>
                   {challenge.illustrators ?
                     <p>{challenge.illustrators} joined</p>
                     : null}
                   {challenge.totalVotes ?
                     <p>{challenge.totalVotes} votes</p>
                     : null}
-                  <p>{moment(challenge.startDate).format("DD/MM/YYYY")} - {moment(challenge.endDate).format("DD/MM/YYYY")}</p>
+                  <p>{moment(challenge.startDate).add(10, "days").calendar()} - {moment(challenge.endDate).add(10, "days").calendar()}</p>
                   {challenge.description ?
                     <p>{challenge.description}</p>
+                    : null}
+                  {challenge.status === "active" ?
+                    <button>Join</button>
                     : null}
 
                   {user.isAdmin ?

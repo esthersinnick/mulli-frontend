@@ -7,7 +7,9 @@ import Login from "./pages/Login";
 import ChallengeList from "./pages/ChallengeList";
 import CreateChallenge from "./pages/CreateChallenge";
 import EditChallenge from "./pages/EditChallenge";
+import ChallengeDetail from "./pages/ChallengeDetail";
 import ChallengeManager from "./pages/ChallengeManager";
+
 import NotFound from "./pages/NotFound";
 import AuthProvider from "./contexts/auth-context";
 import PrivateRoute from "./components/PrivateRoute";
@@ -15,6 +17,16 @@ import AdminRoute from "./components/AdminRoute";
 import AnonRoute from "./components/AnonRoute";
 import "./App.css";
 import "milligram";
+
+
+import firebase from "firebase";
+
+const config = {
+  apiKey: "AIzaSyBj7EWAwq4T3SpSDYv_OkgOoIPrZtbaW6E",
+  authDomain: "mulli-app.firebaseapp.com",
+  storageBucket: "gs://mulli-app.appspot.com/"
+};
+firebase.initializeApp(config);
 
 class App extends Component {
   render() {
@@ -28,6 +40,7 @@ class App extends Component {
               <AnonRoute path="/login" component={Login} />
               <PrivateRoute path="/challenges" exact component={ChallengeList} />
               <AdminRoute path="/challenges/manager" exact component={ChallengeManager} />
+              <PrivateRoute path="/challenges/:challengeId" exact component={ChallengeDetail} />
               <AdminRoute path="/challenges/manager/add" exact component={CreateChallenge} />
               <AdminRoute path="/challenges/manager/:challengeId/edit" exact component={EditChallenge} />
               <Route component={NotFound} />
