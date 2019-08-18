@@ -21,6 +21,7 @@ class ChallengeDetail extends Component {
     isJoined: false,
     isArt: false,
     myArt: null,
+    arts: []
   };
 
   goToPreviousPage = () => {
@@ -85,12 +86,6 @@ class ChallengeDetail extends Component {
       }).catch(error => console.log(error))
   };
 
-
-  goToPreviousPage = () => {
-    this.props.history.goBack();
-  }
-
-
   getIsArt = () => {
     const { challengeId } = this.props.match.params
     this.setState({
@@ -106,11 +101,20 @@ class ChallengeDetail extends Component {
       })
   }
 
+  getArts = () => {
+    const { challengeId } = this.props.match.params
+    artService.getAllArtsOfChallenges(challengeId)
+      .then(response => {
+        console.log("arts of this challenge:", response.data)
+      }).catch(error => console.log(error))
+  }
+
+
   render() {
-    const { name, description, startDate, endDate, startVotingDate, endVotingDate, illustrators, totalVotes, status, isJoined, isArt, myArt } = this.state;
+    this.getArts();
+    const { name, description, startDate, endDate, startVotingDate, endVotingDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
     const { challengeId } = this.props.match.params;
     const { user } = this.props;
-    console.log(startVotingDate, endVotingDate, myArt)
     return (
       <>
         <button onClick={this.goToPreviousPage}>Go Back</button>
@@ -143,44 +147,62 @@ class ChallengeDetail extends Component {
           : null
         }
 
-        {/*si hay art, poder borrarla y que salga para subirla otra vez */}
         {status === "active" && isJoined && myArt ?
-          <>
-            <article className="my-art">
+          <section className="my-art">
+            <article >
               <header>
                 <p>My art</p>
               </header>
               <main>
-                {<img src={myArt.images[0]} alt="asdnfa" />}
+                <img src={myArt.images[0]} alt={`my art for ${name}`} />
               </main>
             </article>
-          </>
+          </section>
           : null
         }
 
+        {/*si hay art, poder borrarla y que salga para subirla otra vez */}
+
+
         {/* Si el estado es voting*/}
+        {status === "voting" ?
+          <p>This challenge is at voting process! </p>
+          : null}
+        {status === "voting" && !isArt ?
+          <p>Only participants to this challenge can vote.</p> : null}
+
+
         {/* Si has participado (si isArt)*/}
-        <section className="my-art">
+        {status === "voting" && isArt ?
+          <section className="my-art">
+            <article>
+              <header>
+                <p>My art</p>
+              </header>
+              <main>
+                <img src={myArt.images[0]} alt="asdnfa" />
+              </main>
+            </article>
+          </section>
+          : null}
 
-        </section>
 
-        {/* Si no has participado (si !isArt)*/}
-        <p>This challenge is at voting process! Only participants to this challenge can vote.</p>
+        {/*que no muestre mi art*/}
+        {/* {status === "voting" ?
 
-        <section className="list-of-arts">
+          < section className="list-of-arts">
 
-          {/* Si el estado es voting*/}
-          <article>
-            {/*que no muestre mi art*/}
-          </article>
+            {arts.map(art => {
+              <article key={art._id}>
+              </article>
+            })}
+          </section>
+          : null
+        } */}
 
-
-          {/* Si el estado es closed*/}
-          <article>
-          </article>
-
-        </section>
-
+        {/* Si el estado es closed*/}
+        <article>
+        </article>
       </>
     )
   }

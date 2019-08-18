@@ -68,7 +68,7 @@ class CreateChallenge extends Component {
     challengeService
       .updtateOneChallenge(challengeId, updateChallenge)
       .then(response => {
-        this.props.history.push("/challenges/manager");
+        this.props.history.goBack();
       })
       .catch(error => console.log(error));
   };

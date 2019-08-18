@@ -1,7 +1,3 @@
-//@import './helpers/mixins';
-@import './helpers/variables';
-//@import './layout/structure';
-//@import './components/buttons';
 /*
 $grey: rgb(38, 39, 41);
 $light-green: #9fe5cd;
@@ -13,22 +9,17 @@ $yellow:#F9C942;
 $dark-blue:#27285D;
 $light-grey:#dfe3ee;
 */
-nav{
-  display:none;
-}
+nav {
+  display: none; }
 
 button, .button {
-  background-color: $light-green;
+  background-color: #9fe5cd;
   border: none;
   padding: 10px 20px;
   height: 40px;
   min-width: 100px;
-  color: $dark-green;
+  color: #154B6B;
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-
-
+  letter-spacing: 2px; }
