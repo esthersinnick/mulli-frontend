@@ -8,8 +8,12 @@ class ArtService {
     })
   }
 
-  addOneArt(newArt) {
-    return this.art.post('/add', newArt)
+  addOneArt(newArt, challengeId) {
+    const data = {
+      newArt,
+      challengeId
+    }
+    return this.art.post('/add', data)
       .then(response => response)
   };
 
