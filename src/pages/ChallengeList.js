@@ -14,7 +14,6 @@ class ChallengeList extends Component {
     challengeService
       .getAllChallenges()
       .then(response => {
-        console.log(response.data.listOfChallenges);
         this.setState({
           challenges: response.data.listOfChallenges
         });
@@ -40,46 +39,65 @@ class ChallengeList extends Component {
     const { challenges } = this.state;
     const { user } = this.props;
     return (
-      <>
+      <div className="flex-column">
         <h1>Challenges List</h1>
         {user.isAdmin ?
           <Link to="/challenges/manager/add" className="button">
             Create a new Challenge
-        </Link> : null}
+          </Link> : null}
         {challenges.length > 0 ? (
-          <ul>
-            {challenges.map(challenge => {
-              return (
-                <li key={challenge._id}>
-                  <Link to={`/challenges/${challenge._id}`} ><h3>{challenge.name}</h3></Link>
-                  {challenge.illustrators ?
-                    <p>{challenge.illustrators} joined</p>
-                    : null}
-                  {challenge.totalVotes ?
-                    <p>{challenge.totalVotes} votes</p>
-                    : null}
-                  <p>{moment(challenge.startDate).add(10, "days").calendar()} - {moment(challenge.endDate).add(10, "days").calendar()}</p>
-                  {challenge.description ?
-                    <p>{challenge.description}</p>
-                    : null}
-                  {challenge.status === "active" ?
-                    <button>Join</button>
-                    : null}
+          <section className="challenges-list">
+            <ul>
+              {challenges.map(challenge => {
+                return (
+                  <li key={challenge._id} className="challenge-item">
+                    <Link to={`/challenges/${challenge._id}`} >
+                      <div className="challenge-content">
+                        <h3>{challenge.name}</h3>
+                        <p>{moment(challenge.startDate).add(10, "days").calendar()} - {moment(challenge.endDate).add(10, "days").calendar()}</p>
+                        {challenge.description ?
+                          <p>{challenge.description}</p>
+                          : null}
+                      </div>
+                      <div className="challenge-footer">
+                        <div className="info">
+                          {challenge.illustrators ?
+                            <div className="info-users">
+                              <img src="../images/user.png" alt="users who had joined this challenge" />
+                              <p>{challenge.illustrators}</p>
+                            </div>
+                            : null}
+                          {challenge.totalVotes ?
+                            <div className="info-likes">
+                              <img src="../images/heart.png" alt="total of votes on this challenge" />
+                              <p>{challenge.totalVotes}</p>
+                            </div>
+                            : null}
 
-                  {user.isAdmin ?
-                    <>
-                      <Link to={`/challenges/manager/${challenge._id}/edit`} className="button">Edit</Link>
-                      <button onClick={() => { this.handleDeleteClick(challenge._id) }}>X</button>
-                    </> : null
-                  }
-                </li>
-              );
-            })}
-          </ul>
+                          {challenge.status === "active" ?
+                            <button>Join</button>
+                            : null}
+                        </div>
+
+                        {user.isAdmin ?
+                          <div className="challenge-admin">
+                            <Link to={`/challenges/manager/${challenge._id}/edit`} className="button">Edit</Link>
+                            <button onClick={() => { this.handleDeleteClick(challenge._id) }}>X</button>
+                          </div> : null
+                        }
+
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+
+          </section>
         ) : (
             <p>Loading...</p>
           )}
-      </>
+      </div>
     )
   }
 }

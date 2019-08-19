@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar.js";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import LandingPage from "./pages/LandingPage";
 import ChallengeList from "./pages/ChallengeList";
 import CreateChallenge from "./pages/CreateChallenge";
 import EditChallenge from "./pages/EditChallenge";
@@ -16,7 +17,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import AnonRoute from "./components/AnonRoute";
 import "./App.css";
-import "milligram";
+//import "./scss/css/main.css"
+//import "milligram";
 
 
 import firebase from "firebase";
@@ -33,11 +35,12 @@ class App extends Component {
     return (
       <AuthProvider>
         <Router>
-          <div className="container">
+          <main className="container">
             <Navbar />
             <Switch>
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
+              <PrivateRoute path="/" exact component={LandingPage} />
               <PrivateRoute path="/challenges" exact component={ChallengeList} />
               <AdminRoute path="/challenges/manager" exact component={ChallengeManager} />
               <PrivateRoute path="/challenges/:challengeId" exact component={ChallengeDetail} />
@@ -45,7 +48,7 @@ class App extends Component {
               <AdminRoute path="/challenges/manager/:challengeId/edit" exact component={EditChallenge} />
               <Route component={NotFound} />
             </Switch>
-          </div>
+          </main>
         </Router>
       </AuthProvider>
     );
