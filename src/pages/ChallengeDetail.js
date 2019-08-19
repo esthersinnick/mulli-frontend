@@ -69,7 +69,6 @@ class ChallengeDetail extends Component {
         }
 
       }).then(response => {
-
         if (this.state.status === "closed") {
           artService.getAllArtsOfChallenges(challengeId)
             .then(response => {
