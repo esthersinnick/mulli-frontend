@@ -6,6 +6,7 @@ import artService from "../services/art-service";
 
 import moment from "moment";
 import UploadArtForm from '../components/UploadArtForm';
+import image from 'react-firebase-file-uploader/lib/utils/image';
 
 class ChallengeDetail extends Component {
   state = {
@@ -92,6 +93,7 @@ class ChallengeDetail extends Component {
       isArt: true,
     })
 
+
     artService
       .getOneArtOfUserAndChallenge(challengeId)
       .then(response => {
@@ -101,11 +103,19 @@ class ChallengeDetail extends Component {
       })
   }
 
+  setImage = (imageUrl) => {
+    console.log(imageUrl)
+    this.setState({
+      myArt: { images: [imageUrl] }
+    })
+
+    console.log(this.state)
+  }
+
   getArts = () => {
     const { challengeId } = this.props.match.params
     artService.getAllArtsOfChallenges(challengeId)
       .then(response => {
-        console.log("arts of this challenge:", response.data)
       }).catch(error => console.log(error))
   }
 
@@ -143,7 +153,7 @@ class ChallengeDetail extends Component {
         }
 
         {status === "active" && isJoined && !isArt ?
-          <UploadArtForm challengeId={challengeId} getIsArt={this.getIsArt} />
+          <UploadArtForm challengeId={challengeId} getIsArt={this.getIsArt} setImage={this.setImage} />
           : null
         }
 

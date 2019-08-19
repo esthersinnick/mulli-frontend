@@ -12,19 +12,15 @@ class UploadArtForm extends Component {
     e.preventDefault()
     const { challengeId } = this.props;
 
-    artService.getOneArtOfUserAndChallenge(challengeId)
+    const updateArt = {
+      images: this.state.images
+    }
+
+    artService.updateArtOfUserAndChallenge(challengeId, updateArt)
       .then(response => {
-        const art = (response.data.listOfArts[0]);
-        const artId = art._id
-        const updateArt = {
-          images: this.state.images
-        }
-        artService.updateArt(artId, updateArt)
-          .then(response => {
-            console.log(response, updateArt)
-          }).catch(error => console.log(error))
+        const { setImage } = this.props
 
-
+        setImage(response.data.images[0])
       })
 
     this.props.getIsArt();

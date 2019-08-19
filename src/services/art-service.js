@@ -17,6 +17,7 @@ class ArtService {
       .then(response => response)
   };
 
+
   getAllArts() {
     return this.art.get('/')
       .then(response => response)
@@ -41,6 +42,11 @@ class ArtService {
     return this.art.put(`/${artId}/update`, updateArt)
       .then(response => response);
   };
+
+  updateArtOfUserAndChallenge(challengeId, updateArt) {
+    return this.art.put(`/${challengeId}/user/update`, updateArt)
+      .then(response => response);
+  }
 }
 
 const artService = new ArtService();

@@ -40,9 +40,9 @@ $light-grey:#eef0f4;
 */
 
 /* layout */
-nav{
+/* nav{
   display:none;
-}
+} */
 
 .flex-column{
   /*@include flex-center(column);*/
