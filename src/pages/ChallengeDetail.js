@@ -6,7 +6,6 @@ import artService from "../services/art-service";
 
 import moment from "moment";
 import UploadArtForm from '../components/UploadArtForm';
-import image from 'react-firebase-file-uploader/lib/utils/image';
 
 class ChallengeDetail extends Component {
   state = {
@@ -29,27 +28,6 @@ class ChallengeDetail extends Component {
     this.props.history.goBack();
   }
 
-  joinChallenge = () => {
-    /* comprobar si este usuario ya tiene un arte xcreado apra este challenge */
-
-    const { challengeId } = this.props.match.params;
-    const newArt = {
-      challenge: challengeId,
-      image: '',
-      votes: [],
-      rankingPosition: 0
-    }
-
-    artService.addOneArt(newArt, challengeId)
-      .then(response => response)
-      .catch(error => console.log(error))
-
-    this.setState({
-      isJoined: true,
-    })
-
-  }
-
   componentDidMount() {
     const { challengeId } = this.props.match.params
 
@@ -67,6 +45,28 @@ class ChallengeDetail extends Component {
           illustrators: response.data.illustrators,
           totalVotes: response.data.totalVotes,
         })
+      }).then(response => {
+
+        if (this.state.status === "voting") {
+          artService.getAllArtsOfChallenges(challengeId)
+            .then(response => {
+              this.setState({
+                arts: response.data.listOfArts.sort((a, b) => a.votes.length - b.votes.length),
+              })
+              console.log("arts: ", this.state.arts)
+            }).catch(error => console.log(error))
+        }
+      }
+      ).then(response => {
+
+        if (this.state.status === "closed") {
+          artService.getAllArtsOfChallenges(challengeId)
+            .then(response => {
+              this.setState({
+                arts: response.data.listOfArts.sort(() => 0.5 - Math.random()),
+              })
+            }).catch(error => console.log(error))
+        }
       })
       .catch(error => console.log(error));
 
@@ -87,12 +87,29 @@ class ChallengeDetail extends Component {
       }).catch(error => console.log(error))
   };
 
+  joinChallenge = () => {
+    const { challengeId } = this.props.match.params;
+    const newArt = {
+      challenge: challengeId,
+      image: '',
+      votes: [],
+      rankingPosition: 0
+    }
+
+    artService.addOneArt(newArt, challengeId)
+      .then(response => response)
+      .catch(error => console.log(error))
+
+    this.setState({
+      isJoined: true,
+    })
+  }
+
   getIsArt = () => {
     const { challengeId } = this.props.match.params
     this.setState({
       isArt: true,
     })
-
 
     artService
       .getOneArtOfUserAndChallenge(challengeId)
@@ -112,19 +129,10 @@ class ChallengeDetail extends Component {
     console.log(this.state)
   }
 
-  getArts = () => {
-    const { challengeId } = this.props.match.params
-    artService.getAllArtsOfChallenges(challengeId)
-      .then(response => {
-      }).catch(error => console.log(error))
-  }
-
-
   render() {
-    this.getArts();
-    const { name, description, startDate, endDate, startVotingDate, endVotingDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
+    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
     const { challengeId } = this.props.match.params;
-    const { user } = this.props;
+    //const { user } = this.props;
     return (
       <>
         <button onClick={this.goToPreviousPage}>Go Back</button>
@@ -164,7 +172,7 @@ class ChallengeDetail extends Component {
                 <p>My art</p>
               </header>
               <main>
-                <img src={myArt.images[0]} alt={`my art for ${name}`} />
+                <img src={myArt.images[0]} alt={`my art for ${name}`} width="100%" />
               </main>
             </article>
           </section>
@@ -190,7 +198,7 @@ class ChallengeDetail extends Component {
                 <p>My art</p>
               </header>
               <main>
-                <img src={myArt.images[0]} alt="asdnfa" />
+                <img src={myArt.images[0]} alt="my art for the challenge" width="100%" />
               </main>
             </article>
           </section>
@@ -198,19 +206,34 @@ class ChallengeDetail extends Component {
 
 
         {/*que no muestre mi art*/}
-        {/* {status === "voting" ?
+        {status === "voting" && arts ?
 
           < section className="list-of-arts">
 
-            {arts.map(art => {
+            {arts.map((art, index) => (
               <article key={art._id}>
+                <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
               </article>
-            })}
+            ))}
           </section>
           : null
-        } */}
+        }
 
         {/* Si el estado es closed*/}
+        {status === "closed" && arts ?
+
+          < section className="list-of-arts">
+
+            {arts.map((art, index) => (
+              <article key={art._id}>
+
+                <img src={art.images[0]} alt={`illustration by ${art.user.email /* cambiar por name cuando haga el profile*/} for ${name}`} width="100%" />
+              </article>
+            ))}
+          </section>
+          : null
+        }
+
         <article>
         </article>
       </>

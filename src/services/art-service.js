@@ -29,7 +29,7 @@ class ArtService {
   };
 
   getAllArtsOfChallenges(challengeId) {
-    return this.art.get(`/${challengeId}`)
+    return this.art.get(`/challenge/${challengeId}`)
       .then(response => response)
   };
 
