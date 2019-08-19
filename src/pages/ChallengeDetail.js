@@ -21,7 +21,8 @@ class ChallengeDetail extends Component {
     isJoined: false,
     isArt: false,
     myArt: null,
-    arts: []
+    arts: [],
+    myVotes: [],
   };
 
   goToPreviousPage = () => {
@@ -58,6 +59,16 @@ class ChallengeDetail extends Component {
         }
       }
       ).then(response => {
+        if (this.state.status === "voting") {
+          artService.getMyVotedArtsOfChallenge(challengeId)
+            .then(response => {
+              this.setState({
+                myVotes: response.data.listOfArts
+              })
+            })
+        }
+
+      }).then(response => {
 
         if (this.state.status === "closed") {
           artService.getAllArtsOfChallenges(challengeId)
@@ -67,7 +78,8 @@ class ChallengeDetail extends Component {
               })
             }).catch(error => console.log(error))
         }
-      })
+      }
+      )
       .catch(error => console.log(error));
 
     artService
@@ -118,6 +130,22 @@ class ChallengeDetail extends Component {
           myArt: response.data.listOfArts[0],
         })
       })
+  }
+
+  handleLikes = (artId) => {
+    const { challengeId } = this.props.match.params
+    artService.voteArt(artId)
+      .then(response => {
+        console.log(response)
+      }).then(response => {
+        artService.getMyVotedArtsOfChallenge(challengeId)
+          .then(response => {
+            this.setState({
+              myVotes: response.data.listOfArts
+            })
+          })
+      })
+
   }
 
   setImage = (imageUrl) => {
@@ -210,11 +238,24 @@ class ChallengeDetail extends Component {
 
           < section className="list-of-arts">
 
-            {arts.map((art, index) => (
-              <article key={art._id}>
-                <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
-              </article>
-            ))}
+            {arts.map((art, index) => {
+              if (art._id !== myArt._id) {
+                return (
+                  <article key={art._id} id={art._id}>
+                    <main>
+                      <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
+                    </main>
+                    <footer>
+                      {/* {if (myVotes.includes(art._id)){ ->el botón cambia a Dislike it!
+                        return ( */}
+                      <button className="" onClick={() => { this.handleLikes(art._id) }}>Like it!</button>
+                      {/* )
+                    }} */}
+                    </footer>
+                  </article>
+                )
+              }
+            })}
           </section>
           : null
         }
@@ -226,8 +267,16 @@ class ChallengeDetail extends Component {
 
             {arts.map((art, index) => (
               <article key={art._id}>
+                <header>
 
-                <img src={art.images[0]} alt={`illustration by ${art.user.email /* cambiar por name cuando haga el profile*/} for ${name}`} width="100%" />
+                </header>
+                <main>
+                  <img src={art.images[0]} alt={`illustration by ${art.user.email /* cambiar por name cuando haga el profile*/} for ${name}`} width="100%" />
+                </main>
+                <footer>
+
+                </footer>
+
               </article>
             ))}
           </section>

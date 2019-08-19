@@ -43,10 +43,21 @@ class ArtService {
       .then(response => response);
   };
 
+  voteArt(artId) {
+    return this.art.put(`/${artId}/addVote`)
+      .then(response => response);
+  };
+
   updateArtOfUserAndChallenge(challengeId, updateArt) {
     return this.art.put(`/${challengeId}/user/update`, updateArt)
       .then(response => response);
+  };
+
+  getMyVotedArtsOfChallenge(challengeId) {
+    return this.art.get(`/challenge/${challengeId}/artsVoted`)
+      .then(response => response);
   }
+
 }
 
 const artService = new ArtService();
