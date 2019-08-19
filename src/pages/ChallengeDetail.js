@@ -52,7 +52,7 @@ class ChallengeDetail extends Component {
           artService.getAllArtsOfChallenges(challengeId)
             .then(response => {
               this.setState({
-                arts: response.data.listOfArts.sort((a, b) => a.votes.length - b.votes.length),
+                arts: response.data.listOfArts.sort(() => 0.5 - Math.random()),
               })
               console.log("arts: ", this.state.arts)
             }).catch(error => console.log(error))
@@ -73,7 +73,7 @@ class ChallengeDetail extends Component {
           artService.getAllArtsOfChallenges(challengeId)
             .then(response => {
               this.setState({
-                arts: response.data.listOfArts.sort(() => 0.5 - Math.random()),
+                arts: response.data.listOfArts.sort((a, b) => b.votes.length - a.votes.length),
               })
             }).catch(error => console.log(error))
         }
@@ -267,13 +267,14 @@ class ChallengeDetail extends Component {
             {arts.map((art, index) => (
               <article key={art._id}>
                 <header>
-
+                  <p>${art.user.email}</p>
                 </header>
                 <main>
                   <img src={art.images[0]} alt={`illustration by ${art.user.email /* cambiar por name cuando haga el profile*/} for ${name}`} width="100%" />
                 </main>
                 <footer>
-
+                  <p>votes: {art.votes.length} </p>
+                  <p>Ranking:{index + 1}</p>
                 </footer>
 
               </article>
