@@ -20,7 +20,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
-    const userId = this.props.user._id
+    //const userId = this.props.user._id
     authService
       .me()
       .then(response => {
@@ -37,6 +37,7 @@ class Dashboard extends Component {
     artService.getAllMyArts()
       .then(response => {
         const myArts = response.data.listOfArts;
+        console.log(myArts)
         this.setState({
           active: myArts.filter(art => art.challenge.status === "active"),
           voting: myArts.filter(art => art.challenge.status === "voting"),
@@ -47,7 +48,7 @@ class Dashboard extends Component {
 
 
   render() {
-    const { name, username, email, instagram, website, avatar, active, voting, closed } = this.state
+    const { isAdmin, name, username, email, instagram, website, avatar, active, voting, closed } = this.state
     return (
       <>
         <h1>Dashboard</h1>
@@ -59,6 +60,14 @@ class Dashboard extends Component {
           <p>{instagram}</p>
           <p>{website}</p>
         </section>
+
+        {isAdmin &&
+          <section className="admin">
+            <Link to="/challenges/manager" className="button">
+              Challenge Manager
+            </Link>
+          </section>
+        }
 
         <section className="challenges">
           <section className="active-challenges">

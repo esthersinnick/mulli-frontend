@@ -157,7 +157,7 @@ class ChallengeDetail extends Component {
   }
 
   render() {
-    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts, myVotes } = this.state;
+    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
     const { challengeId } = this.props.match.params;
     //const { user } = this.props;
     return (
@@ -237,23 +237,20 @@ class ChallengeDetail extends Component {
 
           < section className="list-of-arts">
 
-            {arts.map((art, index) => {
-              if (art._id !== myArt._id) {
-                return (
-                  <article key={art._id} id={art._id}>
-                    <main>
-                      <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
-                    </main>
-                    <footer>
-                      {/* {(myVotes.includes(art._id)) ? ( */}
-                      <button className="" onClick={() => { this.handleLikes(art._id) }}>Like it!</button>
-                      {/* ) : null
+            {arts.map((art, index) =>
+              art._id !== myArt._id &&
+              <article key={art._id} id={art._id}>
+                <main>
+                  <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
+                </main>
+                <footer>
+                  {/* {(myVotes.includes(art._id)) ? ( */}
+                  <button className="" onClick={() => { this.handleLikes(art._id) }}>Like it!</button>
+                  {/* ) : null
                       } */}
-                    </footer>
-                  </article>
-                )
-              }
-            })}
+                </footer>
+              </article>
+            )}
           </section>
           : null
         }

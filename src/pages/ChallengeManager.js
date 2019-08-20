@@ -12,9 +12,9 @@ class ChallengeManager extends Component {
     challengeService
       .getAllChallenges()
       .then(response => {
-        console.log(response.data.listOfChallenges);
+        console.log(response);
         this.setState({
-          challenges: response.data.listOfChallenges
+          challenges: response.data
         });
       })
       .catch(error => console.log(error));
