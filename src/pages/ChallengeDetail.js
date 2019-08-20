@@ -157,7 +157,7 @@ class ChallengeDetail extends Component {
   }
 
   render() {
-    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
+    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts, myVotes } = this.state;
     const { challengeId } = this.props.match.params;
     //const { user } = this.props;
     return (
@@ -245,11 +245,10 @@ class ChallengeDetail extends Component {
                       <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
                     </main>
                     <footer>
-                      {/* {if (myVotes.includes(art._id)){ ->el botón cambia a Dislike it!
-                        return ( */}
+                      {/* {(myVotes.includes(art._id)) ? ( */}
                       <button className="" onClick={() => { this.handleLikes(art._id) }}>Like it!</button>
-                      {/* )
-                    }} */}
+                      {/* ) : null
+                      } */}
                     </footer>
                   </article>
                 )
