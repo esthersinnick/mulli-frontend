@@ -61,7 +61,14 @@ class ArtService {
   getMyVotedArtsOfChallenge(challengeId) {
     return this.art.get(`/challenge/${challengeId}/artsVoted`)
       .then(response => response);
+  };
+
+  deleteArtWhenVoting(challengeId) {
+    return this.art.delete(`/${challengeId}/delete`)
+      .then(response => response)
   }
+
+
 
 }
 

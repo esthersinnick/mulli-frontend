@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import withAuth from '../components/withAuth';
 import authService from "../services/auth-service"
 import artService from '../services/art-service';
+import { Link } from 'react-router-dom';
+
 
 class Dashboard extends Component {
   state = {
@@ -12,7 +14,9 @@ class Dashboard extends Component {
     instagram: '',
     website: '',
     avatar: '',
-    myArts: []
+    active: [],
+    voting: [],
+    closed: []
   }
 
   componentDidMount() {
@@ -32,16 +36,18 @@ class Dashboard extends Component {
       })
     artService.getAllMyArts()
       .then(response => {
-        console.log(response)
+        const myArts = response.data.listOfArts;
         this.setState({
-          myArts: response.data.listOfArts,
+          active: myArts.filter(art => art.challenge.status === "active"),
+          voting: myArts.filter(art => art.challenge.status === "voting"),
+          closed: myArts.filter(art => art.challenge.status === "closed")
         })
       })
   }
 
 
   render() {
-    const { name, username, email, instagram, website, avatar, myArts } = this.state
+    const { name, username, email, instagram, website, avatar, active, voting, closed } = this.state
     return (
       <>
         <h1>Dashboard</h1>
@@ -55,18 +61,56 @@ class Dashboard extends Component {
         </section>
 
         <section className="challenges">
+          <section className="active-challenges">
+            <h2>Joining</h2>
+            {active.map((art, index) => {
+              console.log(art)
+              return (
+                <article key={art._id} id={art._id}>
+                  <header>
+                    <Link to={`./challenges/${art.challenge._id}`}><h3>{art.challenge.name}</h3></Link>
+                  </header>
+                  <main>
+                    {art.images.length > 0 && <img src={art.images[0]} alt={name} width="100%" />}
+                  </main>
+                </article>
+              )
+            })}
+          </section>
+          <section className="voting-challenges">
+            <h2>Voting</h2>
+            {voting.map((art, index) => {
+              return (
+                <article key={art._id} id={art._id}>
+                  <header>
+                    <Link to={`./challenges/${art.challenge._id}`}><h3>{art.challenge.name}</h3></Link>
+                  </header>
+                  <main>
+                    <img src={art.images[0]} alt={name} width="100%" />
+                  </main>
+                </article>
+              )
+            })}
+          </section>
+          <section className="closed-challenges">
+            <h2>Closed</h2>
+            {closed.map((art, index) => {
+              return (
+                <article key={art._id} id={art._id}>
+                  <header>
+                    <Link to={`./challenges/${art.challenge._id}`}><h3>{art.challenge.name}</h3></Link>
+                  </header>
+                  <main>
+                    <img src={art.images[0]} alt={name} width="100%" />
+                  </main>
+                  <footer>
 
-          {myArts.map((art, index) => {
-            return (
-              <article key={art._id} id={art._id}>
-                <main>
-                  <img src={art.images[0]} alt={name} width="100%" />
-                </main>
-              </article>
-            )
-          })}
-
-        </section>
+                  </footer>
+                </article>
+              )
+            })}
+          </section>
+        </section >
       </>
     )
   }
