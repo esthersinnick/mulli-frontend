@@ -23,6 +23,11 @@ class ArtService {
       .then(response => response)
   };
 
+  getAllMyArts() {
+    return this.art.get('/myArts')
+      .then(response => response)
+  };
+
   getAllArtsOfUser(userId) {
     return this.art.get(`/${userId}`)
       .then(response => response)
