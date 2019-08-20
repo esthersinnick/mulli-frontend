@@ -10,6 +10,7 @@ import CreateChallenge from "./pages/CreateChallenge";
 import EditChallenge from "./pages/EditChallenge";
 import ChallengeDetail from "./pages/ChallengeDetail";
 import ChallengeManager from "./pages/ChallengeManager";
+import Profile from "./pages/Profile";
 
 import NotFound from "./pages/NotFound";
 import AuthProvider from "./contexts/auth-context";
@@ -48,6 +49,7 @@ class App extends Component {
               <PrivateRoute path="/challenges/:challengeId" exact component={ChallengeDetail} />
               <AdminRoute path="/challenges/manager/add" exact component={CreateChallenge} />
               <AdminRoute path="/challenges/manager/:challengeId/edit" exact component={EditChallenge} />
+              <PrivateRoute path="/profile" exact component={Profile} />
               <Route component={NotFound} />
             </Switch>
           </main>
