@@ -21,7 +21,8 @@ class ChallengeDetail extends Component {
     isJoined: false,
     isArt: false,
     myArt: null,
-    arts: []
+    arts: [],
+    myVotes: [],
   };
 
   goToPreviousPage = () => {
@@ -51,23 +52,33 @@ class ChallengeDetail extends Component {
           artService.getAllArtsOfChallenges(challengeId)
             .then(response => {
               this.setState({
-                arts: response.data.listOfArts.sort((a, b) => a.votes.length - b.votes.length),
+                arts: response.data.listOfArts.sort(() => 0.5 - Math.random()),
               })
               console.log("arts: ", this.state.arts)
             }).catch(error => console.log(error))
         }
       }
       ).then(response => {
+        if (this.state.status === "voting") {
+          artService.getMyVotedArtsOfChallenge(challengeId)
+            .then(response => {
+              this.setState({
+                myVotes: response.data.listOfArts
+              })
+            })
+        }
 
+      }).then(response => {
         if (this.state.status === "closed") {
           artService.getAllArtsOfChallenges(challengeId)
             .then(response => {
               this.setState({
-                arts: response.data.listOfArts.sort(() => 0.5 - Math.random()),
+                arts: response.data.listOfArts.sort((a, b) => b.votes.length - a.votes.length),
               })
             }).catch(error => console.log(error))
         }
-      })
+      }
+      )
       .catch(error => console.log(error));
 
     artService
@@ -120,6 +131,22 @@ class ChallengeDetail extends Component {
       })
   }
 
+  handleLikes = (artId) => {
+    const { challengeId } = this.props.match.params
+    artService.voteArt(artId)
+      .then(response => {
+        console.log(response)
+      }).then(response => {
+        artService.getMyVotedArtsOfChallenge(challengeId)
+          .then(response => {
+            this.setState({
+              myVotes: response.data.listOfArts
+            })
+          })
+      })
+
+  }
+
   setImage = (imageUrl) => {
     console.log(imageUrl)
     this.setState({
@@ -130,7 +157,7 @@ class ChallengeDetail extends Component {
   }
 
   render() {
-    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
+    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts, myVotes } = this.state;
     const { challengeId } = this.props.match.params;
     //const { user } = this.props;
     return (
@@ -210,11 +237,23 @@ class ChallengeDetail extends Component {
 
           < section className="list-of-arts">
 
-            {arts.map((art, index) => (
-              <article key={art._id}>
-                <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
-              </article>
-            ))}
+            {arts.map((art, index) => {
+              if (art._id !== myArt._id) {
+                return (
+                  <article key={art._id} id={art._id}>
+                    <main>
+                      <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
+                    </main>
+                    <footer>
+                      {/* {(myVotes.includes(art._id)) ? ( */}
+                      <button className="" onClick={() => { this.handleLikes(art._id) }}>Like it!</button>
+                      {/* ) : null
+                      } */}
+                    </footer>
+                  </article>
+                )
+              }
+            })}
           </section>
           : null
         }
@@ -226,8 +265,17 @@ class ChallengeDetail extends Component {
 
             {arts.map((art, index) => (
               <article key={art._id}>
+                <header>
+                  <p>${art.user.email}</p>
+                </header>
+                <main>
+                  <img src={art.images[0]} alt={`illustration by ${art.user.email /* cambiar por name cuando haga el profile*/} for ${name}`} width="100%" />
+                </main>
+                <footer>
+                  <p>votes: {art.votes.length} </p>
+                  <p>Ranking:{index + 1}</p>
+                </footer>
 
-                <img src={art.images[0]} alt={`illustration by ${art.user.email /* cambiar por name cuando haga el profile*/} for ${name}`} width="100%" />
               </article>
             ))}
           </section>

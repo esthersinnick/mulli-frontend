@@ -9,7 +9,7 @@
 This is an app for illustrators who want to prove themselves. 
 The goal is to create a community for all artists, fostering an environment of healthy competitiveness and with which to improve your skills and portfolio.
 
-El objetivo es crear un lugar virtual de reunión para todos los artistas, fomentando un ambiente de competitividad sana y con la que poder mejorar tus skills y portfolio.
+The objective is to create a virtual meeting place for all artists, fostering an environment of healthy competitiveness and with which to improve your skills and portfolio.
 
 ## User Stories
 

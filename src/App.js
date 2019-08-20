@@ -22,6 +22,7 @@ import "./App.css";
 
 
 import firebase from "firebase";
+import Dashboard from "./pages/Dashboard.js";
 
 const config = {
   apiKey: "AIzaSyBj7EWAwq4T3SpSDYv_OkgOoIPrZtbaW6E",
@@ -41,6 +42,7 @@ class App extends Component {
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
               <PrivateRoute path="/" exact component={LandingPage} />
+              <PrivateRoute path="/dashboard" exact component={Dashboard} />
               <PrivateRoute path="/challenges" exact component={ChallengeList} />
               <AdminRoute path="/challenges/manager" exact component={ChallengeManager} />
               <PrivateRoute path="/challenges/:challengeId" exact component={ChallengeDetail} />
