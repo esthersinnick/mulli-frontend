@@ -5,6 +5,8 @@ import artService from '../services/art-service';
 import withAuth from '../components/withAuth';
 import { Redirect } from 'react-router-dom';
 import ChallengeCard from '../components/ChallengeCard';
+import { ReactComponent as AddIcon } from '../svg/plus.svg'
+
 
 class ChallengeList extends Component {
   state = {
@@ -102,15 +104,19 @@ class ChallengeList extends Component {
         )}
         <h1>Challenges List</h1>
         {user.isAdmin ? (
-          <Link to="/challenges/manager/add" className="button">
-            Create a new Challenge
-          </Link>
+          <section className="create-challenge-box">
+            <p>Add a new challenge</p>
+            <Link to="/challenges/manager/add">
+              <AddIcon className="add-icon" />
+            </Link>
+          </section>
         ) : null}
+
         {challenges.length > 0 ? (
           <section className="challenges-list">
             <section className="active-challenges">
               <header>
-                <h2>Current Challenges</h2>
+                <h2>Active</h2>
               </header>
               <main>
                 <ul>
@@ -133,7 +139,7 @@ class ChallengeList extends Component {
 
             <section className="active-challenges">
               <header>
-                <h2>Challenges to vote</h2>
+                <h2>Voting</h2>
               </header>
               <main>
                 <ul>
@@ -155,7 +161,7 @@ class ChallengeList extends Component {
 
             <section className="active-challenges">
               <header>
-                <h2>Closed challenges</h2>
+                <h2>Closed</h2>
               </header>
               <main>
                 <ul>

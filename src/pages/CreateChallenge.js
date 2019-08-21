@@ -1,24 +1,25 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import challengeService from "../services/challenges-service";
-import ChallengeForm from "../components/ChallengeForm";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import challengeService from '../services/challenges-service';
+import ChallengeForm from '../components/ChallengeForm';
 
 class CreateChallenge extends Component {
   state = {
-    status: "active",
-    name: "",
-    description: "",
-    startDate: "",
-    endDate: "",
-    startVotingDate: "",
-    endVotingDate: "",
+    status: 'active',
+    name: '',
+    description: '',
+    startDate: '',
+    endDate: '',
+    startVotingDate: '',
+    endVotingDate: '',
     illustrators: 0,
-    totalVotes: 0
+    totalVotes: 0,
+    errors: []
   };
 
   handleOnChange = event => {
     event.preventDefault();
-    console.log(event.nativeEvent)
+    console.log(event.nativeEvent);
     const { name, value } = event.target;
     this.setState({
       [name]: value
@@ -27,7 +28,7 @@ class CreateChallenge extends Component {
 
   goToPreviousPage = () => {
     this.props.history.goBack();
-  }
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -43,6 +44,25 @@ class CreateChallenge extends Component {
       illustrators,
       totalVotes
     } = this.state;
+    const errors = [];
+
+    if (startDate > endDate) {
+      errors.push('Start date must be before end date');
+    }
+
+    if (startVotingDate > endVotingDate) {
+      errors.push('Start voting date must be before end voting date');
+    }
+
+    if (endDate > startVotingDate) {
+      errors.push('Start voting date must be after end date');
+    }
+
+    if (errors.length) {
+      this.setState({ errors });
+      return;
+    }
+
     const newChallenge = {
       status,
       name,
@@ -65,7 +85,16 @@ class CreateChallenge extends Component {
   };
 
   render() {
-    const { status, name, description, startDate, endDate, startVotingDate, endVotingDate } = this.state;
+    const {
+      errors,
+      status,
+      name,
+      description,
+      startDate,
+      endDate,
+      startVotingDate,
+      endVotingDate
+    } = this.state;
 
     return (
       <>
@@ -83,6 +112,14 @@ class CreateChallenge extends Component {
           handleSubmit={this.handleSubmit}
           buttonText="Add new challenge"
         />
+
+        {errors && (
+          <div>
+            {errors.map(err => (
+              <p>{err}</p>
+            ))}
+          </div>
+        )}
       </>
     );
   }

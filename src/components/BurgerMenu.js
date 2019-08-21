@@ -31,14 +31,6 @@ class BurgerMenu extends Component {
   }
 
   styles = {
-    bmBurgerButton: {
-      position: 'fixed',
-      width: '25px',
-      height: '25px',
-      right: '20px',
-      top: '20px'
-    },
-
     bmItemList: {
       height: '80%'
     },
@@ -47,7 +39,7 @@ class BurgerMenu extends Component {
   render() {
     return (
       <>
-        <Menu disableAutoFocus isOpen={this.state.areMenusOpen} styles={this.styles} right customBurgerIcon={<img src="../images/heart.svg" alt="burger menu icon" onClick={this.handleClickMenu} />}>
+        <Menu disableAutoFocus isOpen={this.state.areMenusOpen} styles={this.styles} right customBurgerIcon={<img src="/images/heart.svg" alt="burger menu icon" onClick={this.handleClickMenu} />}>
           {this.props.isLoggedIn ?
             (
               <>

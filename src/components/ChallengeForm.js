@@ -41,6 +41,7 @@ const ChallengeForm = props => {
         placeholder="Name"
         value={name}
         onChange={changeInput}
+        required
       />
 
       <label htmlFor="name">Description</label>
@@ -51,6 +52,7 @@ const ChallengeForm = props => {
         placeholder="Description"
         value={description}
         onChange={changeInput}
+        required
       />
 
       <label htmlFor="startDate">Start date</label>
@@ -61,6 +63,7 @@ const ChallengeForm = props => {
         placeholder="startDate"
         value={startDate}
         onChange={changeInput}
+        required
       />
 
       <label htmlFor="endDate">End date</label>
@@ -71,6 +74,7 @@ const ChallengeForm = props => {
         placeholder="endDate"
         value={endDate}
         onChange={changeInput}
+        required
       />
 
       <label htmlFor="startVotingDate">Start voting date</label>
@@ -81,6 +85,7 @@ const ChallengeForm = props => {
         placeholder="startVotingDate"
         value={startVotingDate}
         onChange={changeInput}
+        required
       />
 
       <label htmlFor="endVotingDate">End date</label>
@@ -91,6 +96,7 @@ const ChallengeForm = props => {
         placeholder="endVotingDate"
         value={endVotingDate}
         onChange={changeInput}
+        required
       />
       <button type="submit">{buttonText}</button>
     </form>

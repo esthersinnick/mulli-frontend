@@ -5,7 +5,7 @@ import ChallengeForm from "../components/ChallengeForm";
 import moment from "moment";
 
 
-class CreateChallenge extends Component {
+class EditChallenge extends Component {
   state = {
     status: "active",
     name: "",
@@ -15,7 +15,8 @@ class CreateChallenge extends Component {
     startVotingDate: "",
     endVotingDate: "",
     illustrators: 0,
-    totalVotes: 0
+    totalVotes: 0,
+    errors: []
   };
 
   goToPreviousPage = () => {
@@ -62,7 +63,24 @@ class CreateChallenge extends Component {
       startVotingDate,
       endVotingDate,
     };
+    const errors = [];
 
+    if (startDate > endDate) {
+      errors.push('Start date must be before end date');
+    }
+
+    if (startVotingDate > endVotingDate) {
+      errors.push('Start voting date must be before end voting date');
+    }
+
+    if (endDate > startVotingDate) {
+      errors.push('Start voting date must be after end date');
+    }
+
+    if (errors.length) {
+      this.setState({ errors });
+      return;
+    }
     const { challengeId } = this.props.match.params
 
     challengeService
@@ -74,7 +92,7 @@ class CreateChallenge extends Component {
   };
 
   render() {
-    const { name, description, startDate, endDate, startVotingDate, endVotingDate, status } = this.state;
+    const { errors, name, description, startDate, endDate, startVotingDate, endVotingDate, status } = this.state;
     return (
       <>
         <h1>Edit challenge</h1>
@@ -93,9 +111,16 @@ class CreateChallenge extends Component {
             buttonText="Update challenge"
           />) : null
         }
+        {errors && (
+          <div>
+            {errors.map(err => (
+              <p>{err}</p>
+            ))}
+          </div>
+        )}
       </>
     );
   }
 }
 
-export default withRouter(CreateChallenge);
+export default withRouter(EditChallenge);

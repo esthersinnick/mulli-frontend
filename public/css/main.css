@@ -85,6 +85,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
   .bm-item-list a {
     color: #154B6B; }
 
+.bm-burger-button {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #9fe5cd;
+  border: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-content: center; }
+
 .navigation-links {
   display: flex;
   flex-direction: column;
@@ -106,10 +119,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
     justify-content: space-evenly;
     height: 80%; }
 
-.back-nav svg {
-  height: 20px;
-  margin-top: 20px;
-  margin-left: 10px; }
+.back-nav {
+  position: fixed;
+  background-color: #9fe5cd;
+  border: 0;
+  left: 10px;
+  top: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-content: center; }
+  .back-nav svg {
+    width: 20px; }
+    .back-nav svg path {
+      fill: white; }
 
 form {
   display: flex;
@@ -127,49 +152,65 @@ form {
   width: 90%;
   margin: 10px 0;
   color: white; }
-
-.challenge-item .challenge-content {
-  background-color: #648ADF;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  padding: 20px; }
-
-.challenge-item a {
-  color: white; }
-
-.challenge-item .challenge-content a h3 {
-  text-transform: uppercase; }
-
-.challenge-item .challenge-footer {
-  background-color: #eef0f4;
-  color: #262729;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 20px; }
-
-.challenge-item .challenge-footer .info img {
-  height: 30px; }
-
-.challenge-item .challenge-footer .info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center; }
-
-.challenge-item .challenge-footer .info div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center; }
+  .challenge-item .challenge-content {
+    background-color: #648ADF;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px; }
+    .challenge-item .challenge-content .challenge-tag {
+      background-color: white;
+      display: inline;
+      color: black;
+      padding: 7px;
+      border-radius: 5px; }
+  .challenge-item a {
+    color: white; }
+    .challenge-item a h3 {
+      text-transform: uppercase; }
+  .challenge-item .challenge-footer {
+    background-color: #eef0f4;
+    color: #262729;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 20px; }
+    .challenge-item .challenge-footer .info {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center; }
+      .challenge-item .challenge-footer .info div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center; }
+      .challenge-item .challenge-footer .info img {
+        height: 30px; }
 
 .challenge-admin {
-  border-top: 1px solid grey;
-  margin-top: 20px;
-  padding-top: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center; }
+  .challenge-admin svg {
+    box-sizing: content-box;
+    width: 35px;
+    height: 35px;
+    padding-left: 10px; }
+    .challenge-admin svg path {
+      fill: white; }
+
+.create-challenge-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  background-color: #eef0f4;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px; }
+  .create-challenge-box .add-icon {
+    width: 50px;
+    margin: 10px; }
 
 button, .button {
   background-color: #9fe5cd;
@@ -189,5 +230,14 @@ h1 {
   font-weight: 500;
   letter-spacing: 2px;
   color: #1D90BC;
-  margin-top: -20px;
-  margin-bottom: 40px; }
+  margin-top: 30px;
+  margin-bottom: 40px;
+  text-align: center; }
+
+h2 {
+  margin-left: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 19px;
+  letter-spacing: 1px;
+  color: #648ADF; }

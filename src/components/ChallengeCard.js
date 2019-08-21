@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { ReactComponent as EditIcon } from '../svg/pencil.svg'
+import { ReactComponent as RemoveIcon } from '../svg/remove.svg'
+
 
 const ChallengeCard = ({
   challenge,
@@ -9,9 +12,26 @@ const ChallengeCard = ({
   onJoin = () => { },
   showJoinButton = false
 }) => {
+
+  const colors = ['#1D90BC', '#154B6B', '#648ADF', '#FC9566', '#F9C942', '#27285D'];
+  const pickColor = () => {
+    const index = Math.round(Math.random() * (colors.length - 1));
+    return colors[index]
+  }
+
+  const randomBgColor = {
+    backgroundColor: pickColor()
+  }
+
   return (
     <div className="challenge-item">
-      <div className="challenge-content">
+      <div className="challenge-content" style={randomBgColor}>
+        {user.isAdmin && (
+          <div className="challenge-admin">
+            <Link to={`/challenges/manager/${challenge._id}/edit`}><EditIcon /></Link>
+            <a onClick={() => handleDeleteClick(challenge._id)} href="0"><RemoveIcon /></a>
+          </div>
+        )}
         <p className="challenge-tag">{challenge.status}</p>
         <Link to={`/challenges/${challenge._id}`}>
           <h3>{challenge.name}</h3>
@@ -43,17 +63,6 @@ const ChallengeCard = ({
           )}
         </div>
 
-        {user.isAdmin && (
-          <div className="challenge-admin">
-            <Link
-              to={`/challenges/manager/${challenge._id}/edit`}
-              className="button"
-            >
-              Edit
-            </Link>
-            <button onClick={() => handleDeleteClick(challenge._id)}>X</button>
-          </div>
-        )}
       </div>
     </div>
   );
