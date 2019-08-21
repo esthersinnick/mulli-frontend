@@ -106,6 +106,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
     justify-content: space-evenly;
     height: 80%; }
 
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center; }
+
 .challenges-list ul {
   display: flex;
   flex-direction: column;

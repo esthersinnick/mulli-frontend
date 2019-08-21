@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Navbar from "./components/Navbar.js";
+import BackNav from "./components/BackNav.js";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import LandingPage from "./pages/LandingPage";
@@ -43,13 +44,13 @@ class App extends Component {
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
               {/* <PrivateRoute path="/" exact render={(props) => <><Navbar /><LandingPage {...props} /> </>} /> */}
-              <PrivateRoute path="/dashboard" exact render={(props) => <><Navbar /><Dashboard {...props} /> </>} />
-              <PrivateRoute path="/challenges" exact render={(props) => <><Navbar /><ChallengeList {...props} /> </>} />
-              <AdminRoute path="/challenges/manager" exact render={(props) => <><Navbar /><ChallengeManager {...props} /> </>} />
-              <PrivateRoute path="/challenges/:challengeId" exact render={(props) => <><Navbar /><ChallengeDetail {...props} /> </>} />
-              <AdminRoute path="/challenges/manager/add" exact render={(props) => <><Navbar /><CreateChallenge {...props} /> </>} />
-              <AdminRoute path="/challenges/manager/:challengeId/edit" exact render={(props) => <><Navbar /><EditChallenge {...props} /> </>} />
-              <PrivateRoute path="/profile" exact render={(props) => <><Navbar /><Profile {...props} /> </>} />
+              <PrivateRoute path="/dashboard" exact render={(props) => <><Navbar /><BackNav /><Dashboard {...props} /> </>} />
+              <PrivateRoute path="/challenges" exact render={(props) => <><Navbar /><BackNav /><ChallengeList {...props} /> </>} />
+              <AdminRoute path="/challenges/manager" exact render={(props) => <><Navbar /><BackNav /><ChallengeManager {...props} /> </>} />
+              <PrivateRoute path="/challenges/:challengeId" exact render={(props) => <><Navbar /><BackNav /><ChallengeDetail {...props} /> </>} />
+              <AdminRoute path="/challenges/manager/add" exact render={(props) => <><Navbar /><BackNav /><CreateChallenge {...props} /> </>} />
+              <AdminRoute path="/challenges/manager/:challengeId/edit" exact render={(props) => <><Navbar /><BackNav /><EditChallenge {...props} /> </>} />
+              <PrivateRoute path="/profile" exact render={(props) => <><Navbar /><BackNav /><Profile {...props} /> </>} />
               <Route component={NotFound} />
             </Switch>
           </main>

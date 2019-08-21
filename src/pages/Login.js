@@ -7,42 +7,68 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-  }
+    errors: ''
+  };
 
-  handleFormSubmit = (event) => {
+  handleFormSubmit = event => {
     event.preventDefault();
-    const { email, password } = this.state
+    event.stopPropagation();
+    const { email, password } = this.state;
 
-    this.props.login({ email, password })
-      .then((user) => {
-        console.log(user)
+    this.props
+      .login({ email, password })
+      .then(user => {
+        console.log(user);
       })
-      .catch(error => console.log(error))
-  }
+      .catch(({ response }) => {
+        this.setState({ errors: response.data.message });
+      });
+  };
 
-  handleChange = (event) => {
+  handleChange = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, errors } = this.state;
     return (
       <>
         <Navbar />
         <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='email' >email:</label>
-          <input id='email' type='text' name='email' value={email} onChange={this.handleChange} />
-          <label htmlFor='password'>Password:</label>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
-          <input type='submit' value='Login' />
+          <label htmlFor="email">email:</label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            value={email}
+            required
+            onChange={this.handleChange}
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            value={password}
+            required
+            onChange={this.handleChange}
+          />
+          <input type="submit" value="Login" disabled={!email || !password} />
         </form>
 
-        <p>You don't have an accout yet?
-            <Link to={'/signup'}> Signup</Link>
+        <p>
+          You don't have an accout yet?
+          <Link to={'/signup'}> Signup</Link>
         </p>
+
+        {errors && (
+          <div class="errors">
+            <p>{errors}</p>
+          </div>
+        )}
       </>
-    )
+    );
   }
 }
 
