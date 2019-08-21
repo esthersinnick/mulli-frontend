@@ -1,0 +1,55 @@
+.challenges-list ul{
+  @include flex-center(column);
+}
+
+.challenge-item {
+  width: 90%;
+  margin: 10px 0;
+  color: white;
+}
+
+.challenge-item .challenge-content{
+  background-color: #648ADF;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 20px;
+}
+
+
+.challenge-item a{
+  color:white;
+}
+
+.challenge-item .challenge-content a h3{
+  text-transform: uppercase;
+}
+
+.challenge-item .challenge-footer{
+  background-color: #eef0f4;
+  color: #262729;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px;
+}
+
+.challenge-item .challenge-footer .info img{
+  height: 30px;
+}
+
+.challenge-item .challenge-footer .info{
+  @include flex-center(row);
+}
+
+.challenge-item .challenge-footer .info div{
+  @include flex-center(row);
+}
+
+.challenge-admin{
+  border-top: 1px solid grey;
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}

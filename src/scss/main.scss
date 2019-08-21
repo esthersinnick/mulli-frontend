@@ -2,17 +2,8 @@
 @import './helpers/variables';
 @import './layout/structure';
 @import './components/buttons';
-/*
-$grey: rgb(38, 39, 41);
-$light-green: #9fe5cd;
-$green:#1D90BC;
-$dark-green:#154B6B;
-$blue:#648ADF;
-$red:#FC9566;
-$yellow:#F9C942;
-$dark-blue:#27285D;
-$light-grey:#dfe3ee;
-*/
+@import './components/burgerMenu';
+@import './pages/pages';
 
 button, .button {
   background-color: $light-green;
@@ -27,5 +18,9 @@ button, .button {
   letter-spacing: 2px;
 }
 
+// .bm-menu-wrap + div{
+//   display: flex;
+//   justify-content: flex-end;
+// }
 
 

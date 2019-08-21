@@ -1,0 +1,13 @@
+button, .button {
+  background-color:$light-green; 
+  border: none;
+  padding: 10px 20px;
+  height: 40px;
+  min-width: 100px;
+  color: $dark-green;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}

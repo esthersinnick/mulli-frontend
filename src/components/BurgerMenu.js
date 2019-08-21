@@ -30,24 +30,57 @@ class BurgerMenu extends Component {
     event.preventDefault();
   }
 
+  styles = {
+    bmBurgerButton: {
+      position: 'fixed',
+      width: '25px',
+      height: '25px',
+      right: '20px',
+      top: '20px'
+    },
+
+    bmItemList: {
+      height: '80%'
+    },
+  }
+
   render() {
     return (
       <>
-        <Menu isOpen={this.state.areMenusOpen} right customBurgerIcon={<img src="../images/heart.svg" alt="burger menu icon" onClick={this.handleClickMenu} />}>
+        <Menu disableAutoFocus isOpen={this.state.areMenusOpen} styles={this.styles} right customBurgerIcon={<img src="../images/heart.svg" alt="burger menu icon" onClick={this.handleClickMenu} />}>
           {this.props.isLoggedIn ?
             (
               <>
-                <p>username: {this.props.user.username}</p>
-                <Link onClick={this.props.logout}>Logout</Link>
-                <Link id="dashboard" className="menu-item" to="/dashboard" onClick={this.handleClickMenu}>My Dashboard</Link>
-                <Link id="profile" className="menu-item" to="/profile" onClick={this.handleClickMenu}>Edit Profile</Link>
-                <Link id="challenges" className="menu-item" to="/challenges" onClick={this.handleClickMenu}>Challenges</Link>
+                <div className="profile-info">
+                  <h3>{this.props.user.name}</h3>
+                  <p>{this.props.user.username}</p>
+                </div>
+                <div className="navigation-links">
+                  <Link id="challenges" className="menu-item" to="/challenges" onClick={this.handleClickMenu}>Challenges</Link>
+                  <Link id="dashboard" className="menu-item" to="/dashboard" onClick={this.handleClickMenu}>My Dashboard</Link>
+                  <Link id="profile" className="menu-item" to="/profile" onClick={this.handleClickMenu}>Edit Profile</Link>
+                </div>
+                <div className="admin-links">
+                  {this.props.user.isAdmin && <Link id="admin-challenges" className="menu-item" to="/challenges/manager" onClick={this.handleClickMenu}>Challenge Manager</Link>}
+                </div>
+                <div className="logout-links">
+                  <Link className="button menu-item" onClick={this.props.logout} to="">Log out</Link>
+                </div>
               </>
             ) : (
-              <>
-                <Link to='/login'>Login</Link>
-                <Link to='/signup'>Signup</Link>
-              </>
+              <div className="auth-links">
+                <div>
+                  <h3>Wellcome, little mullier!</h3>
+                  <div className="auth-login">
+                    <p>Alredy have an account?</p>
+                    <Link className="button menu-item" to='/login'>Log in</Link>
+                  </div>
+                  <div className="auth-signup">
+                    <p>Not a user yet?</p>
+                    <Link className="button menu-item" to='/signup'>Sign up</Link>
+                  </div>
+                </div>
+              </div>
             )}
 
         </Menu>

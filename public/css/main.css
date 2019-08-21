@@ -10,17 +10,156 @@
   justify-content: space-around;
   align-items: center; }
 
+button, .button {
+  background-color: #9fe5cd;
+  border: none;
+  padding: 10px 20px;
+  height: 40px;
+  min-width: 100px;
+  color: #154B6B;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center; }
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47; }
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #1D90BC; }
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px; }
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7; }
+
 /*
-$grey: rgb(38, 39, 41);
-$light-green: #9fe5cd;
-$green:#1D90BC;
-$dark-green:#154B6B;
-$blue:#648ADF;
-$red:#FC9566;
-$yellow:#F9C942;
-$dark-blue:#27285D;
-$light-grey:#dfe3ee;
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
 */
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%; }
+
+/* General sidebar styles */
+.bm-menu {
+  background: #ffffff;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em; }
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47; }
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em; }
+
+/* Individual item */
+.bm-item {
+  display: inline-block; }
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(255, 255, 255, 0.8) !important; }
+
+/* custom styles */
+.bm-item-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  align-items: inherit;
+  color: #1D90BC; }
+  .bm-item-list h3, .bm-item-list p {
+    text-align: center;
+    color: #154B6B; }
+  .bm-item-list a {
+    color: #154B6B; }
+
+.navigation-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 40%; }
+
+.auth-links {
+  text-align: center; }
+
+.navigation-links {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0; }
+
+.auth-links {
+  height: 100%; }
+  .auth-links div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80%; }
+
+.challenges-list ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center; }
+
+.challenge-item {
+  width: 90%;
+  margin: 10px 0;
+  color: white; }
+
+.challenge-item .challenge-content {
+  background-color: #648ADF;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 20px; }
+
+.challenge-item a {
+  color: white; }
+
+.challenge-item .challenge-content a h3 {
+  text-transform: uppercase; }
+
+.challenge-item .challenge-footer {
+  background-color: #eef0f4;
+  color: #262729;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 20px; }
+
+.challenge-item .challenge-footer .info img {
+  height: 30px; }
+
+.challenge-item .challenge-footer .info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; }
+
+.challenge-item .challenge-footer .info div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; }
+
+.challenge-admin {
+  border-top: 1px solid grey;
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center; }
+
 button, .button {
   background-color: #9fe5cd;
   border: none;

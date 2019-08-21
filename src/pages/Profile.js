@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import authService from '../services/auth-service';
 import withAuth from '../components/withAuth';
 
 class Profile extends Component {
@@ -35,7 +34,8 @@ class Profile extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     const { name, username, email, instagram, website } = this.state;
-    await authService.update({ name, username, email, instagram, website });
+
+    await this.props.userUpdate({ name, username, email, instagram, website });
     this.props.history.push('/dashboard');
   };
 

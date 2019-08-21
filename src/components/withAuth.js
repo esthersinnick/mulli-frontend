@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {AuthContext} from '../contexts/auth-context'
+import { AuthContext } from '../contexts/auth-context'
 
 //esto será un HOC
 
@@ -8,20 +8,21 @@ const withAuth = (Comp) => {
     render() {
       return (
         <AuthContext.Consumer>
-          {({user, isLoggedIn, login, signup, logout}) => ( //desestrucutramos value directamente para poder usarlo debajo sin tener que poner value.loquesea
-            <Comp 
-              user={user} 
-              isLoggedIn={isLoggedIn} 
-              login={login} 
-              signup={signup} 
-              logout={logout} 
+          {({ user, isLoggedIn, login, signup, logout, userUpdate }) => ( //desestrucutramos value directamente para poder usarlo debajo sin tener que poner value.loquesea
+            <Comp
+              user={user}
+              isLoggedIn={isLoggedIn}
+              login={login}
+              signup={signup}
+              logout={logout}
+              userUpdate={userUpdate}
               {...this.props} //así mantenemos las props que le pasamos manulamente al propio componente
             />
           )}
         </AuthContext.Consumer>
       )
     }
-  }  
-} 
+  }
+}
 
 export default withAuth
