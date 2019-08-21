@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import withAuth from '../components/withAuth';
+import UploadArtForm from '../components/UploadArtForm';
+import { ReactComponent as HeartIcon } from '../svg/heart.svg'
+
 import challengeService from "../services/challenges-service";
 import artService from "../services/art-service";
 
 import moment from "moment";
-import UploadArtForm from '../components/UploadArtForm';
 
 
 const colors = ['#1D90BC', '#154B6B', '#648ADF', '#FC9566', '#F9C942', '#27285D'];
+const bgs = ['challenge_bg01.png', 'challenge_bg02.png', 'challenge_bg03.png', 'challenge_bg04.png', 'challenge_bg05.png', 'challenge_bg06.png'];
 const pickColor = () => {
   const index = Math.round(Math.random() * (colors.length - 1));
   return colors[index]
 }
+const pickBg = () => {
+  const index = Math.round(Math.random() * (bgs.length - 1));
+  return bgs[index]
+}
 
 const randomBgColor = {
-  backgroundColor: pickColor()
+  backgroundColor: pickColor(),
+  backgroundImage: `url(/images/${pickBg()})`,
+  backgroundSize: 'contain'
 }
 
 
@@ -155,12 +164,9 @@ class ChallengeDetail extends Component {
   }
 
   setImage = (imageUrl) => {
-    console.log(imageUrl)
     this.setState({
       myArt: { images: [imageUrl] }
     })
-
-    console.log(this.state)
   }
 
   render() {
@@ -171,6 +177,7 @@ class ChallengeDetail extends Component {
       <>
         <section className="challenge-info" style={randomBgColor}>
           <div>
+            <p className="challenge-tag">{status}</p>
             <h3>{name}</h3>
 
             <p>{moment(startDate).add(10, "days").calendar()} - {moment(endDate).add(10, "days").calendar()}</p>
@@ -181,7 +188,7 @@ class ChallengeDetail extends Component {
 
             {
               status === "active" && !isJoined ?
-                <button onClick={this.joinChallenge}>Join</button>
+                <button className="white-btn" onClick={this.joinChallenge}>Join</button>
                 : null
             }
           </div>
@@ -190,18 +197,21 @@ class ChallengeDetail extends Component {
 
 
         {status === "active" && isJoined && !isArt ?
+
           <UploadArtForm challengeId={challengeId} getIsArt={this.getIsArt} setImage={this.setImage} />
           : null
         }
 
         {status === "active" && isJoined && myArt ?
           <section className="my-art">
-            <article >
+            <article>
               <header>
-                <p>My art</p>
+                <h2>My art</h2>
               </header>
               <main>
-                <img src={myArt.images[0]} alt={`my art for ${name}`} width="100%" />
+                <div className="my-art-container">
+                  <img src={myArt.images[0]} alt={`my art for ${name}`} width="100%" />
+                </div>
               </main>
             </article>
           </section>
@@ -212,45 +222,41 @@ class ChallengeDetail extends Component {
 
 
         {/* Si el estado es voting*/}
-        {status === "voting" ?
-          <p>This challenge is at voting process! </p>
-          : null}
-        {status === "voting" && !isArt ?
-          <p>Only participants to this challenge can vote.</p> : null}
+
+        {status === "voting" &&
+          <section className="voting-section">
+            <p className="votting-title">This challenge is at voting process! </p>
+            {status === "voting" && !isArt ?
+              <p className="message">Only participants to this challenge can vote.</p> : null}
+          </section>}
 
 
         {/* Si has participado (si isArt)*/}
         {status === "voting" && isArt ?
           <section className="my-art">
-            <article>
+            <article class="">
               <header>
-                <p>My art</p>
+                <h2>My art</h2>
               </header>
               <main>
-                <img src={myArt.images[0]} alt="my art for the challenge" width="100%" />
+                <div className="my-art-container">
+                  <img src={myArt.images[0]} alt="my art for the challenge" width="100%" />
+                </div>
               </main>
             </article>
           </section>
           : null}
 
-
-        {/*que no muestre mi art*/}
         {status === "voting" && arts ?
-
-          < section className="list-of-arts">
-
+          <section className="list-of-arts">
+            <h2>Vote!</h2>
             {arts.map((art, index) =>
               art._id !== myArt._id &&
               <article key={art._id} id={art._id}>
                 <main>
+                  <HeartIcon className="like-button" onClick={() => { this.handleLikes(art._id) }} />
                   <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
                 </main>
-                <footer>
-                  {/* {(myVotes.includes(art._id)) ? ( */}
-                  <button className="" onClick={() => { this.handleLikes(art._id) }}>Like it!</button>
-                  {/* ) : null
-                      } */}
-                </footer>
               </article>
             )}
           </section>

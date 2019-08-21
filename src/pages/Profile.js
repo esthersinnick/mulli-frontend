@@ -46,7 +46,7 @@ class Profile extends Component {
       <form onSubmit={this.handleSubmit}>
         <h1>Profile</h1>
 
-        <label htmlFor="avatar">
+        {/* <label htmlFor="avatar">
           <img
             src={avatar}
             alt={name}
@@ -59,7 +59,7 @@ class Profile extends Component {
             style={{ display: 'none' }}
             onChange={this.handleOnChange}
           />
-        </label>
+        </label> */}
 
         <div>
           <label htmlFor="name" />

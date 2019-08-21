@@ -23,6 +23,11 @@ button, .button {
   letter-spacing: 2px;
   text-align: center; }
 
+.white-btn {
+  background-color: white;
+  color: #648ADF;
+  max-width: 150px; }
+
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: #373a47; }
@@ -157,12 +162,6 @@ form {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 20px; }
-    .challenge-item .challenge-content .challenge-tag {
-      background-color: white;
-      display: inline;
-      color: black;
-      padding: 7px;
-      border-radius: 5px; }
   .challenge-item a {
     color: white; }
     .challenge-item a h3 {
@@ -185,6 +184,17 @@ form {
         align-items: center; }
       .challenge-item .challenge-footer .info img {
         height: 30px; }
+
+.challenge-tag {
+  background-color: white;
+  display: inline;
+  color: black;
+  padding: 7px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 20px;
+  max-width: 75px;
+  text-align: center; }
 
 .challenge-admin {
   display: flex;
@@ -230,6 +240,63 @@ form {
       font-size: 24px;
       text-transform: uppercase;
       letter-spacing: 2px; }
+
+.my-art article header h2 {
+  text-align: center; }
+
+.my-art article main {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .my-art article main .my-art-container {
+    width: 90%;
+    margin-bottom: 25px; }
+    .my-art article main .my-art-container img {
+      border-radius: 10px; }
+
+.upload-form {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .upload-container .image-preview {
+    width: 90%;
+    border-radius: 10px;
+    margin: 30px auto; }
+
+.big-button {
+  padding: 20px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 100;
+  letter-spacing: 2px;
+  box-sizing: content-box;
+  margin: 20px auto; }
+
+.voting-section {
+  padding: 50px;
+  text-align: center;
+  font-size: 24px;
+  color: darkgray;
+  border-bottom: 1px solid grey;
+  background-color: #32373e; }
+  .voting-section .message {
+    font-size: 16px;
+    color: #FC9566;
+    padding-top: 22px; }
+
+.like-button {
+  width: 40px;
+  position: absolute;
+  right: 20px;
+  margin-top: 20px; }
 
 button, .button {
   background-color: #9fe5cd;

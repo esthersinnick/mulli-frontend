@@ -39,7 +39,7 @@ class BurgerMenu extends Component {
   render() {
     return (
       <>
-        <Menu disableAutoFocus isOpen={this.state.areMenusOpen} styles={this.styles} right customBurgerIcon={<img src="/images/heart.svg" alt="burger menu icon" onClick={this.handleClickMenu} />}>
+        <Menu disableAutoFocus isOpen={this.state.areMenusOpen} styles={this.styles} right customBurgerIcon={<img src="/images/logo.png" alt="burger menu icon" onClick={this.handleClickMenu} />}>
           {this.props.isLoggedIn ?
             (
               <>

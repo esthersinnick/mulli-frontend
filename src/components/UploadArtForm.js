@@ -36,9 +36,11 @@ class UploadArtForm extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.submitForm}>
+      <form className="upload-form" onSubmit={this.submitForm}>
         <FileComponent getImage={this.getImage} />
-        <button type="submit">Upload Art</button>
+        {
+          this.state.images.length > 0 && <button type="submit" className="big-button">Upload Art</button>
+        }
       </form>
     );
   }
