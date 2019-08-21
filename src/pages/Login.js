@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import Navbar from '../components/Navbar';
 import withAuth from '../components/withAuth';
 
 class Login extends Component {
@@ -14,24 +14,25 @@ class Login extends Component {
     const { email, password } = this.state
 
     this.props.login({ email, password })
-    .then( (user) => {
-      console.log(user)
-    })
-    .catch( error => console.log(error) )
+      .then((user) => {
+        console.log(user)
+      })
+      .catch(error => console.log(error))
   }
 
-  handleChange = (event) => {  
-    const {name, value} = event.target;
-    this.setState({[name]: value});
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   render() {
     const { email, password } = this.state;
     return (
       <>
+        <Navbar />
         <form onSubmit={this.handleFormSubmit}>
           <label htmlFor='email' >email:</label>
-          <input id='email' type='text' name='email' value={email} onChange={this.handleChange}/>
+          <input id='email' type='text' name='email' value={email} onChange={this.handleChange} />
           <label htmlFor='password'>Password:</label>
           <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
           <input type='submit' value='Login' />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import authService from '../services/auth-service';
-import { withRouter } from 'react-router-dom';
+import withAuth from '../components/withAuth';
 
 class Profile extends Component {
   state = {
@@ -13,15 +13,14 @@ class Profile extends Component {
   };
 
   componentDidMount() {
-    authService.me().then(response => {
-      this.setState({
-        name: response.name,
-        username: response.username,
-        email: response.email,
-        instagram: response.instagram,
-        website: response.website,
-        avatar: response.avatar
-      });
+    const user = this.props.user
+    this.setState({
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      instagram: user.instagram,
+      website: user.website,
+      avatar: user.avatar
     });
   }
 
@@ -112,4 +111,4 @@ class Profile extends Component {
   }
 }
 
-export default withRouter(Profile);
+export default withAuth(Profile);

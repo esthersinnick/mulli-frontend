@@ -11,14 +11,14 @@ import EditChallenge from "./pages/EditChallenge";
 import ChallengeDetail from "./pages/ChallengeDetail";
 import ChallengeManager from "./pages/ChallengeManager";
 import Profile from "./pages/Profile";
-
 import NotFound from "./pages/NotFound";
+
 import AuthProvider from "./contexts/auth-context";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import AnonRoute from "./components/AnonRoute";
+
 import "./App.css";
-//import "./scss/css/main.css"
 //import "milligram";
 
 
@@ -38,18 +38,18 @@ class App extends Component {
       <AuthProvider>
         <Router>
           <main className="container">
-            <Navbar />
             <Switch>
+              <Route path="/" exact component={LandingPage} />
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
-              <PrivateRoute path="/" exact component={LandingPage} />
-              <PrivateRoute path="/dashboard" exact component={Dashboard} />
-              <PrivateRoute path="/challenges" exact component={ChallengeList} />
-              <AdminRoute path="/challenges/manager" exact component={ChallengeManager} />
-              <PrivateRoute path="/challenges/:challengeId" exact component={ChallengeDetail} />
-              <AdminRoute path="/challenges/manager/add" exact component={CreateChallenge} />
-              <AdminRoute path="/challenges/manager/:challengeId/edit" exact component={EditChallenge} />
-              <PrivateRoute path="/profile" exact component={Profile} />
+              {/* <PrivateRoute path="/" exact render={(props) => <><Navbar /><LandingPage {...props} /> </>} /> */}
+              <PrivateRoute path="/dashboard" exact render={(props) => <><Navbar /><Dashboard {...props} /> </>} />
+              <PrivateRoute path="/challenges" exact render={(props) => <><Navbar /><ChallengeList {...props} /> </>} />
+              <AdminRoute path="/challenges/manager" exact render={(props) => <><Navbar /><ChallengeManager {...props} /> </>} />
+              <PrivateRoute path="/challenges/:challengeId" exact render={(props) => <><Navbar /><ChallengeDetail {...props} /> </>} />
+              <AdminRoute path="/challenges/manager/add" exact render={(props) => <><Navbar /><CreateChallenge {...props} /> </>} />
+              <AdminRoute path="/challenges/manager/:challengeId/edit" exact render={(props) => <><Navbar /><EditChallenge {...props} /> </>} />
+              <PrivateRoute path="/profile" exact render={(props) => <><Navbar /><Profile {...props} /> </>} />
               <Route component={NotFound} />
             </Switch>
           </main>

@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-
 import { ReactComponent as HeartIcon } from '../svg/heart.svg'
+import withAuth from '../components/withAuth';
+import Navbar from '../components/Navbar';
 
 class LandingPage extends Component {
   render() {
     return (
       <>
+        <Navbar />
         <h1>
           Landing Page
-      </h1>
+        </h1>
         <HeartIcon />
-
       </>
     )
   }
 }
 
-export default LandingPage;
+export default withAuth(LandingPage);
 
 
 /*CSS en el path:
