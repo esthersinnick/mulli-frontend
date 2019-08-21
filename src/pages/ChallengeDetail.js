@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-//import { withRouter } from "react-router-dom";
 import withAuth from '../components/withAuth';
 import challengeService from "../services/challenges-service";
 import artService from "../services/art-service";
 
 import moment from "moment";
 import UploadArtForm from '../components/UploadArtForm';
+
+
+const colors = ['#1D90BC', '#154B6B', '#648ADF', '#FC9566', '#F9C942', '#27285D'];
+const pickColor = () => {
+  const index = Math.round(Math.random() * (colors.length - 1));
+  return colors[index]
+}
+
+const randomBgColor = {
+  backgroundColor: pickColor()
+}
+
 
 class ChallengeDetail extends Component {
   state = {
@@ -24,10 +35,6 @@ class ChallengeDetail extends Component {
     arts: [],
     myVotes: [],
   };
-
-  goToPreviousPage = () => {
-    this.props.history.goBack();
-  }
 
   componentDidMount() {
     const { challengeId } = this.props.match.params
@@ -162,30 +169,25 @@ class ChallengeDetail extends Component {
     //const { user } = this.props;
     return (
       <>
-        <button onClick={this.goToPreviousPage}>Go Back</button>
-        <h2>{name}</h2>
+        <section className="challenge-info" style={randomBgColor}>
+          <div>
+            <h3>{name}</h3>
 
-        {
-          illustrators ?
-            <p>{illustrators} joined</p>
-            : null
-        }
-        {
-          totalVotes ?
-            <p>{totalVotes} votes</p>
-            : null
-        }
-        <p>{moment(startDate).add(10, "days").calendar()} - {moment(endDate).add(10, "days").calendar()}</p>
+            <p>{moment(startDate).add(10, "days").calendar()} - {moment(endDate).add(10, "days").calendar()}</p>
 
-        {description ? <p>{description}</p>
-          : null
-        }
+            {description ? <p>{description}</p>
+              : null
+            }
 
-        {
-          status === "active" && !isJoined ?
-            <button onClick={this.joinChallenge}>Join</button>
-            : null
-        }
+            {
+              status === "active" && !isJoined ?
+                <button onClick={this.joinChallenge}>Join</button>
+                : null
+            }
+          </div>
+
+        </section>
+
 
         {status === "active" && isJoined && !isArt ?
           <UploadArtForm challengeId={challengeId} getIsArt={this.getIsArt} setImage={this.setImage} />
