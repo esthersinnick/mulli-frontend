@@ -242,3 +242,56 @@
     }
   }
 }
+
+
+.wellcome{
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(/images/challenge_bg08.png);
+  background-size: cover;
+  p{
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 2px;
+  }
+  svg{
+    width: 60%;
+    margin:50px 0;
+    path{
+      fill:white;
+    }
+  }
+  .for-anon{
+    display: flex;
+    flex-direction: column;
+    div{
+      text-align: center;
+      margin: 20px 0;
+      a{
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.auth-page{
+  background-image: url(/images/auth-bg.png);
+  background-size: cover;
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  form{
+    height: 70vh;
+    p{
+      margin-top: 15px;
+      color: grey;
+      a{
+        color:$blue;
+      }
+    }
+  }
+}

@@ -45,29 +45,28 @@ class Signup extends Component {
     const { email, password, name, username, errors } = this.state;
     return (
       <>
+
         <Navbar />
-        <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input id="name" type="text" name="name" value={name} required onChange={this.handleChange} />
-          <label htmlFor="username">Username:</label>
-          <input id="username" type="text" name="username" value={username} required onChange={this.handleChange} />
-          <label htmlFor="email">Email:</label>
-          <input id="email" type="email" name="email" value={email} required onChange={this.handleChange} />
-          <label htmlFor="password">Password:</label>
-          <input id="password" type="password" name="password" value={password} required onChange={this.handleChange} />
-          <button type="submit" disabled={!password || !name || !username || !email}>Sign up</button>
-        </form>
+        <div className="auth-page">
+          <form onSubmit={this.handleFormSubmit}>
+            <input id="name" type="text" name="name" value={name} placeholder="Name" required onChange={this.handleChange} />
+            <input id="username" type="text" name="username" value={username} placeholder="Usernasme" required onChange={this.handleChange} />
+            <input id="email" type="email" name="email" value={email} placeholder="Email" required onChange={this.handleChange} />
+            <input id="password" type="password" name="password" value={password} placeholder="Password" required onChange={this.handleChange} />
+            {errors && (
+              <div class="errors">
+                <p>{errors}</p>
+              </div>
+            )}
+            <button type="submit" disabled={!password || !name || !username || !email}>Sign up</button>
+            <p>
+              Already have account?
+            <Link to={'/login'}> Login</Link>
+            </p>
 
-        <p>
-          Already have account?
-          <Link to={'/login'}> Login</Link>
-        </p>
+          </form>
 
-        {errors && (
-          <div class="errors">
-            <p>{errors}</p>
-          </div>
-        )}
+        </div>
       </>
     );
   }

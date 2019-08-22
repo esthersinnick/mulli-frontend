@@ -41,6 +41,8 @@ class App extends Component {
           <main className="container">
             <Switch>
               <Route path="/" exact component={LandingPage} />
+              {/* <AnonRoute path="/" exact component={Login} />
+              <PrivateRoute path="/" exact render={(props) => <><Navbar /><BackNav /><ChallengeList {...props} /> </>} /> */}
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
               {/* <PrivateRoute path="/" exact render={(props) => <><Navbar /><LandingPage {...props} /> </>} /> */}

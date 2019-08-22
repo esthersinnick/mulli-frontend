@@ -65,11 +65,11 @@ class BurgerMenu extends Component {
                   <h3>Wellcome, little mullier!</h3>
                   <div className="auth-login">
                     <p>Alredy have an account?</p>
-                    <Link className="button menu-item" to='/login'>Log in</Link>
+                    <Link className="button menu-item" to='/login' onClick={this.handleClickMenu}>Log in</Link>
                   </div>
                   <div className="auth-signup">
                     <p>Not a user yet?</p>
-                    <Link className="button menu-item" to='/signup'>Sign up</Link>
+                    <Link className="button menu-item" to='/signup' onClick={this.handleClickMenu}>Sign up</Link>
                   </div>
                 </div>
               </div>

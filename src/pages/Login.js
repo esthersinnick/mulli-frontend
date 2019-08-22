@@ -35,38 +35,39 @@ class Login extends Component {
     return (
       <>
         <Navbar />
-        <form className="login-form" onSubmit={this.handleFormSubmit}>
-          <label htmlFor="email">email:</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={email}
-            required
-            onChange={this.handleChange}
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={this.handleChange}
-          />
-          {errors && (
-            <div class="errors">
-              <p>{errors}</p>
-            </div>
-          )}
-          <button type="submit" disabled={!email || !password} >Log in</button>
-        </form>
+        <div className="auth-page">
 
-        <p>
-          You don't have an accout yet?
-          <Link to={'/signup'}> Signup</Link>
-        </p>
-
+          <form className="login-form" onSubmit={this.handleFormSubmit}>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Email"
+              required
+              onChange={this.handleChange}
+            />
+            <input
+              id="password"
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              required
+              onChange={this.handleChange}
+            />
+            {errors && (
+              <div class="errors">
+                <p>{errors}</p>
+              </div>
+            )}
+            <button type="submit" disabled={!email || !password} >Log in</button>
+            <p>
+              You don't have an accout yet?
+              <Link to={'/signup'}> Signup</Link>
+            </p>
+          </form>
+        </div>
       </>
     );
   }
