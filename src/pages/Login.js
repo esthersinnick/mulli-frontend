@@ -18,7 +18,6 @@ class Login extends Component {
     this.props
       .login({ email, password })
       .then(user => {
-        console.log(user);
       })
       .catch(({ response }) => {
         this.setState({ errors: response.data.message });

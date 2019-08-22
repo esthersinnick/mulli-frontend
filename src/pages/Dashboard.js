@@ -37,7 +37,6 @@ class Dashboard extends Component {
     artService.getAllMyArts()
       .then(response => {
         const myArts = response.data.listOfArts;
-        console.log(myArts)
         this.setState({
           active: myArts.filter(art => art.challenge.status === "active"),
           voting: myArts.filter(art => art.challenge.status === "voting"),
@@ -73,7 +72,6 @@ class Dashboard extends Component {
           <section className="active-challenges">
             <h2>Joining</h2>
             {active.map((art, index) => {
-              console.log(art)
               return (
                 <article key={art._id} id={art._id}>
                   <header>

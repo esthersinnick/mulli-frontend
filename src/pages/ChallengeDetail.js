@@ -71,7 +71,6 @@ class ChallengeDetail extends Component {
               this.setState({
                 arts: response.data.listOfArts.sort(() => 0.5 - Math.random()),
               })
-              console.log("arts: ", this.state.arts)
             }).catch(error => console.log(error))
         }
       }

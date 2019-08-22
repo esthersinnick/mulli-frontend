@@ -18,7 +18,6 @@ class BurgerMenu extends Component {
   };
 
   handleClickMenu = (event) => {
-    console.log(this.state.areMenusOpen)
     if (this.state.areMenusOpen === null) {
       this.setState({ areMenusOpen: false });
     } else {

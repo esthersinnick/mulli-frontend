@@ -18,7 +18,6 @@ class CreateChallenge extends Component {
 
   handleOnChange = event => {
     event.preventDefault();
-    console.log(event.nativeEvent);
     const { name, value } = event.target;
     this.setState({
       [name]: value
