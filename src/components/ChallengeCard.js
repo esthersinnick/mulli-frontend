@@ -29,7 +29,7 @@ const ChallengeCard = ({
         {user.isAdmin && (
           <div className="challenge-admin">
             <Link to={`/challenges/manager/${challenge._id}/edit`}><EditIcon /></Link>
-            <a onClick={() => handleDeleteClick(challenge._id)} href="0"><RemoveIcon /></a>
+            <a onClick={() => handleDeleteClick(challenge._id)} href="#0"><RemoveIcon /></a>
           </div>
         )}
         <p className="challenge-tag">{challenge.status}</p>
