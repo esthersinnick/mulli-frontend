@@ -1,5 +1,8 @@
-.challenges-list ul{
+.challenges-list {
+  width: 100%;
+  ul{
   @include flex-center(column);
+  }
 }
 
 .challenge-item {

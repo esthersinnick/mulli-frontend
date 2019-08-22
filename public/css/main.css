@@ -232,11 +232,13 @@ form button:disabled {
   background-color: #c0d3cc;
   color: #7a8389; }
 
-.challenges-list ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center; }
+.challenges-list {
+  width: 100%; }
+  .challenges-list ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; }
 
 .challenge-item {
   width: 90%;
