@@ -58,7 +58,7 @@ class ChallengeManager extends Component {
                   <td>
                     <div className="challenge-admin challenge-manager">
                       <Link to={`/challenges/manager/${challenge._id}/edit`}><EditIcon /></Link>
-                      <a className="remove" onClick={() => this.handleDeleteClick(challenge._id)} href="#0"><RemoveIcon /></a>
+                      <div className="remove" onClick={() => this.handleDeleteClick(challenge._id)}><RemoveIcon /></div>
                     </div>
                   </td>
                 </tr>
