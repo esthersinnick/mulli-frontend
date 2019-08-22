@@ -254,7 +254,10 @@ input[type="date"], input[type="date"]:focus {
   .challenge-item a {
     color: white; }
     .challenge-item a h3 {
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      margin: 25px 0; }
+  .challenge-item p {
+    margin: 10px 0; }
   .challenge-item .challenge-footer {
     background-color: #eef0f4;
     color: #262729;
