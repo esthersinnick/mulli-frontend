@@ -219,15 +219,11 @@ select:focus, input[type="date"]:focus {
   /* Safari prior 6.1 */
   transition: all 0.5s; }
 
-.date {
-  display: flex;
-  justify-content: space-evenly; }
-  .date input, .date select {
-    width: 28%; }
-  .date input {
-    padding: 12px; }
-  .date input:focus {
-    width: 28%; }
+input {
+  padding: 12px; }
+
+input:focus {
+  width: 28%; }
 
 .challenge-form button {
   margin-top: 20px; }
