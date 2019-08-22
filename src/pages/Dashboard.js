@@ -53,8 +53,8 @@ class Dashboard extends Component {
       <>
         <h1>Dashboard</h1>
         <section className="profile">
-          <img src={avatar} alt={name} />
-          <p>{name}</p>
+          {/* <img src={avatar} alt={name} /> */}
+          <h3>{name}</h3>
           <p>{username}</p>
           <p>{email}</p>
           <p>{instagram}</p>
@@ -69,7 +69,7 @@ class Dashboard extends Component {
           </section>
         }
 
-        <section className="challenges">
+        <section className="challenges-dashboard">
           <section className="active-challenges">
             <h2>Joining</h2>
             {active.map((art, index) => {
