@@ -43,6 +43,7 @@ class ChallengeDetail extends Component {
     myArt: null,
     arts: [],
     myVotes: [],
+    myVotesIds: [],
   };
 
   componentDidMount() {
@@ -78,8 +79,10 @@ class ChallengeDetail extends Component {
         if (this.state.status === "voting") {
           artService.getMyVotedArtsOfChallenge(challengeId)
             .then(response => {
+
               this.setState({
-                myVotes: response.data.listOfArts
+                myVotes: response.data.listOfArts,
+                myVotesIds: response.data.listOfArts.map(art => art._id)
               })
             })
         }
@@ -156,7 +159,8 @@ class ChallengeDetail extends Component {
         artService.getMyVotedArtsOfChallenge(challengeId)
           .then(response => {
             this.setState({
-              myVotes: response.data.listOfArts
+              myVotes: response.data.listOfArts,
+              myVotesIds: response.data.listOfArts.map(art => art._id)
             })
           })
       })
@@ -170,7 +174,7 @@ class ChallengeDetail extends Component {
   }
 
   render() {
-    const { name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
+    const { myVotesIds, name, description, startDate, endDate, illustrators, totalVotes, status, isJoined, isArt, myArt, arts } = this.state;
     const { challengeId } = this.props.match.params;
     //const { user } = this.props;
     return (
@@ -254,7 +258,7 @@ class ChallengeDetail extends Component {
               art._id !== myArt._id &&
               <article key={art._id} id={art._id}>
                 <main>
-                  <HeartIcon className="like-button" onClick={() => { this.handleLikes(art._id) }} />
+                  {myVotesIds.includes(art._id) ? <HeartIcon className="like-button liked" onClick={() => { this.handleLikes(art._id) }} /> : <HeartIcon className="like-button" onClick={() => { this.handleLikes(art._id) }} />}
                   <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
                 </main>
               </article>

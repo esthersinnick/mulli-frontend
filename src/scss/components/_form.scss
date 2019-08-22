@@ -28,6 +28,7 @@ input[type="file"] {
   color: $dark-green;
   padding:3%;
 }
+
 input[type="text"], input[type="email"], input[type="password"],input[type="url"] {
   text-align: center;
   background: none;
@@ -54,22 +55,23 @@ input[type="text"]:disabled, input[type="email"]:disabled, input[type="password"
   background-color: #94cbcf;
   color: cadetblue;
 }
-select{
+select, input[type="date"]{
   text-align: center;
   background: none;
   border: 0;
-  border-bottom: 2px solid #259bab;
+  border-bottom: 2px solid $blue;
   height: 40px;
   padding: 5px;
-  width: 60%;
   margin-bottom: 30px;
   -webkit-transition: all 1s;
   transition: all 1s;
   color: $dark-green;
   font-size: 0.8em;
+  width: 45%;
+  margin: 5px;
 }
 
-select:focus{
+select:focus, , input[type="date"]:focus{
   outline: none;
   border-bottom: 2px solid $dark-green;
   -webkit-transition: all 0.5s; /* Safari prior 6.1 */
@@ -92,6 +94,13 @@ select:focus{
   }
 }
 
+input[type="date"]{
+
+}
+
 .challenge-form{
+  button{
+    margin-top: 20px;
+  }
   
 }

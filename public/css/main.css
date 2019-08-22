@@ -197,21 +197,22 @@ input[type="text"]:disabled, input[type="email"]:disabled, input[type="password"
   background-color: #94cbcf;
   color: cadetblue; }
 
-select {
+select, input[type="date"] {
   text-align: center;
   background: none;
   border: 0;
-  border-bottom: 2px solid #259bab;
+  border-bottom: 2px solid #648ADF;
   height: 40px;
   padding: 5px;
-  width: 60%;
   margin-bottom: 30px;
   -webkit-transition: all 1s;
   transition: all 1s;
   color: #154B6B;
-  font-size: 0.8em; }
+  font-size: 0.8em;
+  width: 45%;
+  margin: 5px; }
 
-select:focus {
+select:focus, input[type="date"]:focus {
   outline: none;
   border-bottom: 2px solid #154B6B;
   -webkit-transition: all 0.5s;
@@ -227,6 +228,9 @@ select:focus {
     padding: 12px; }
   .date input:focus {
     width: 28%; }
+
+.challenge-form button {
+  margin-top: 20px; }
 
 .challenges-list ul {
   display: flex;
@@ -492,6 +496,9 @@ select:focus {
   .challenges-dashboard section article main img {
     border-radius: 10px;
     width: 90%; }
+
+.liked path {
+  fill: black; }
 
 button, .button {
   background-color: #9fe5cd;
