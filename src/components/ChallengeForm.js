@@ -25,7 +25,7 @@ const ChallengeForm = props => {
   };
 
   return (
-    <form onSubmit={submitForm}>
+    <form className="challenge-form" onSubmit={submitForm}>
 
       <label htmlFor="status">Status</label>
       <select name="status" id="status" defaultValue={status} onChange={changeInput}>
@@ -54,50 +54,49 @@ const ChallengeForm = props => {
         onChange={changeInput}
         required
       />
+      <label>Active</label>
+      <div className="date-form">
+        <input
+          type="date"
+          id="startDate"
+          name="startDate"
+          placeholder="startDate"
+          value={startDate}
+          onChange={changeInput}
+          required
+        />
+        <input
+          type="date"
+          id="endDate"
+          name="endDate"
+          placeholder="endDate"
+          value={endDate}
+          onChange={changeInput}
+          required
+        />
 
-      <label htmlFor="startDate">Start date</label>
-      <input
-        type="date"
-        id="startDate"
-        name="startDate"
-        placeholder="startDate"
-        value={startDate}
-        onChange={changeInput}
-        required
-      />
-
-      <label htmlFor="endDate">End date</label>
-      <input
-        type="date"
-        id="endDate"
-        name="endDate"
-        placeholder="endDate"
-        value={endDate}
-        onChange={changeInput}
-        required
-      />
-
-      <label htmlFor="startVotingDate">Start voting date</label>
-      <input
-        type="date"
-        id="startVotingDate"
-        name="startVotingDate"
-        placeholder="startVotingDate"
-        value={startVotingDate}
-        onChange={changeInput}
-        required
-      />
-
-      <label htmlFor="endVotingDate">End date</label>
-      <input
-        type="date"
-        id="endVotingDate"
-        name="endVotingDate"
-        placeholder="endVotingDate"
-        value={endVotingDate}
-        onChange={changeInput}
-        required
-      />
+      </div>
+      <label>Voting</label>
+      <div className="date-form">
+        <input
+          type="date"
+          id="startVotingDate"
+          name="startVotingDate"
+          placeholder="startVotingDate"
+          value={startVotingDate}
+          onChange={changeInput}
+          required
+        />
+        <input
+          type="date"
+          id="endVotingDate"
+          name="endVotingDate"
+          placeholder="endVotingDate"
+          value={endVotingDate}
+          onChange={changeInput}
+          required
+        />
+      </div>
       <button type="submit">{buttonText}</button>
     </form>
   );

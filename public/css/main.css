@@ -290,6 +290,9 @@ select:focus {
     .challenge-admin svg path {
       fill: white; }
 
+.challenge-manager svg path {
+  fill: #1D90BC; }
+
 .create-challenge-box {
   display: flex;
   flex-direction: column;
@@ -395,6 +398,29 @@ select:focus {
   align-items: center;
   height: 100vh; }
 
+.manager {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.manager-table {
+  padding: 15px; }
+  .manager-table tr td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; }
+    .manager-table tr td h3 {
+      color: #1d90bc;
+      text-transform: uppercase;
+      font-weight: 400;
+      letter-spacing: 2px;
+      font-size: 16px; }
+    .manager-table tr td p {
+      font-size: 14px;
+      color: grey; }
+    .manager-table tr td .challenge-manager .remove svg path {
+      fill: #FC9566; }
+
 button, .button {
   background-color: #9fe5cd;
   border: none;
@@ -413,7 +439,8 @@ h1 {
   font-weight: 500;
   letter-spacing: 2px;
   color: #1D90BC;
-  margin-top: 30px;
+  padding-top: 30px;
+  margin-top: 0;
   margin-bottom: 40px;
   text-align: center; }
 

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import challengeService from "../services/challenges-service";
+
+import { ReactComponent as EditIcon } from '../svg/pencil.svg'
+import { ReactComponent as RemoveIcon } from '../svg/remove.svg'
+
 import moment from "moment";
 
 class ChallengeManager extends Component {
@@ -37,25 +41,30 @@ class ChallengeManager extends Component {
   render() {
     const { challenges } = this.state;
     return (
-      <div>
+      <div className="manager">
         <h1>Challenge Manager</h1>
         <Link to="/challenges/manager/add" className="button">
           Create a new Challenge
         </Link>
         {challenges.length > 0 ? (
-          <ul>
+          <table className="manager-table">
             {challenges.map(challenge => {
               return (
-                <li key={challenge._id}>
-                  <h3>{challenge.name}</h3>
-                  <p>{moment(challenge.startDate).add(10, "days").calendar()} - {moment(challenge.endDate).add(10, "days").calendar()}</p>
-                  <Link to={`/challenges/manager/${challenge._id}/edit`} className="button">Edit</Link>
-                  <button onClick={() => { this.handleDeleteClick(challenge._id) }}>X</button>
-
-                </li>
+                <tr key={challenge._id}>
+                  <td>
+                    <h3>{challenge.name}</h3>
+                    <p>{moment(challenge.startDate).add(10, "days").calendar()} - {moment(challenge.endDate).add(10, "days").calendar()}</p>
+                  </td>
+                  <td>
+                    <div className="challenge-admin challenge-manager">
+                      <Link to={`/challenges/manager/${challenge._id}/edit`}><EditIcon /></Link>
+                      <a className="remove" onClick={() => this.handleDeleteClick(challenge._id)} href="0"><RemoveIcon /></a>
+                    </div>
+                  </td>
+                </tr>
               );
             })}
-          </ul>
+          </table>
         ) : (
             <p>Loading...</p>
           )}

@@ -67,6 +67,14 @@
   }
 }
 
+.challenge-manager{
+  svg{
+    path{
+      fill:$green;
+    }
+  }
+}
+
 .create-challenge-box{
   display: flex;
   flex-direction: column;
@@ -196,4 +204,41 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.manager{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.manager-table{
+  padding: 15px;
+  tr{
+    td{
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      h3{
+        color: #1d90bc;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 2px;
+        font-size: 16px;
+      }
+      p{
+        font-size: 14px;
+        color: grey;
+      }
+      .challenge-manager{
+        .remove{
+          svg{
+            path{
+              fill:$red;
+            }
+          }
+        }
+      }
+    }
+  }
 }

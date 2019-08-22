@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import challengeService from "../services/challenges-service";
 import ChallengeForm from "../components/ChallengeForm";
 import moment from "moment";
@@ -18,10 +17,6 @@ class EditChallenge extends Component {
     totalVotes: 0,
     errors: []
   };
-
-  goToPreviousPage = () => {
-    this.props.history.goBack();
-  }
 
   componentDidMount() {
     const { challengeId } = this.props.match.params
@@ -96,7 +91,6 @@ class EditChallenge extends Component {
     return (
       <>
         <h1>Edit challenge</h1>
-        <button onClick={this.goToPreviousPage}>Go Back</button>
         {name !== "" ? (
           <ChallengeForm
             status={status}
@@ -123,4 +117,4 @@ class EditChallenge extends Component {
   }
 }
 
-export default withRouter(EditChallenge);
+export default EditChallenge;

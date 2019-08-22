@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import challengeService from '../services/challenges-service';
 import ChallengeForm from '../components/ChallengeForm';
 
@@ -24,10 +23,6 @@ class CreateChallenge extends Component {
     this.setState({
       [name]: value
     });
-  };
-
-  goToPreviousPage = () => {
-    this.props.history.goBack();
   };
 
   handleSubmit = event => {
@@ -98,8 +93,7 @@ class CreateChallenge extends Component {
 
     return (
       <>
-        <h1>Create new challenge</h1>
-        <button onClick={this.goToPreviousPage}>Go Back</button>
+        <h1>New challenge</h1>
         <ChallengeForm
           status={status}
           name={name}
@@ -125,4 +119,4 @@ class CreateChallenge extends Component {
   }
 }
 
-export default withRouter(CreateChallenge);
+export default CreateChallenge;
