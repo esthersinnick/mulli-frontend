@@ -48,46 +48,14 @@ class Signup extends Component {
         <Navbar />
         <form onSubmit={this.handleFormSubmit}>
           <label htmlFor="name">Name:</label>
-          <input
-            id="name"
-            type="text"
-            name="name"
-            value={name}
-            required
-            onChange={this.handleChange}
-          />
+          <input id="name" type="text" name="name" value={name} required onChange={this.handleChange} />
           <label htmlFor="username">Username:</label>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={this.handleChange}
-          />
+          <input id="username" type="text" name="username" value={username} required onChange={this.handleChange} />
           <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value={email}
-            required
-            onChange={this.handleChange}
-          />
+          <input id="email" type="email" name="email" value={email} required onChange={this.handleChange} />
           <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={this.handleChange}
-          />
-          <input
-            type="submit"
-            value="Signup"
-            disabled={!password || !name || !username || !email}
-          />
+          <input id="password" type="password" name="password" value={password} required onChange={this.handleChange} />
+          <button type="submit" disabled={!password || !name || !username || !email}>Sign up</button>
         </form>
 
         <p>

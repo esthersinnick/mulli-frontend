@@ -179,3 +179,21 @@
   path{
   }
 }
+
+.errors{
+  text-align: center;
+  background-color: $red;
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  margin:10px 0;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

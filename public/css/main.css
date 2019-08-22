@@ -147,6 +147,87 @@ form {
   justify-content: space-around;
   align-items: center; }
 
+form {
+  width: 100%;
+  margin: 0;
+  padding: 20px 0;
+  font-size: 1.1em; }
+  form span {
+    color: #154B6B; }
+  form label, form div label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #262729;
+    font-weight: 100;
+    text-align: center;
+    margin: 5% 0;
+    display: block; }
+
+input[type="file"] {
+  font-size: 0.7em;
+  background: white;
+  margin: 6%;
+  color: #154B6B;
+  padding: 3%; }
+
+input[type="text"], input[type="email"], input[type="password"], input[type="url"] {
+  text-align: center;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid #648ADF;
+  height: 40px;
+  padding: 20px;
+  width: 60%;
+  margin-bottom: 30px;
+  -webkit-transition: all 1s;
+  /* Safari prior 6.1 */
+  transition: all 1s;
+  font-size: 0.8em;
+  color: #154B6B; }
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="url"]:focus {
+  outline: none;
+  width: 80%;
+  border-bottom: 2px solid #154B6B;
+  -webkit-transition: all 0.5s;
+  /* Safari prior 6.1 */
+  transition: all 0.5s; }
+
+input[type="text"]:disabled, input[type="email"]:disabled, input[type="password"]:disabled {
+  background-color: #94cbcf;
+  color: cadetblue; }
+
+select {
+  text-align: center;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid #259bab;
+  height: 40px;
+  padding: 5px;
+  width: 60%;
+  margin-bottom: 30px;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  color: #154B6B;
+  font-size: 0.8em; }
+
+select:focus {
+  outline: none;
+  border-bottom: 2px solid #154B6B;
+  -webkit-transition: all 0.5s;
+  /* Safari prior 6.1 */
+  transition: all 0.5s; }
+
+.date {
+  display: flex;
+  justify-content: space-evenly; }
+  .date input, .date select {
+    width: 28%; }
+  .date input {
+    padding: 12px; }
+  .date input:focus {
+    width: 28%; }
+
 .challenges-list ul {
   display: flex;
   flex-direction: column;
@@ -297,6 +378,22 @@ form {
   position: absolute;
   right: 20px;
   margin-top: 20px; }
+
+.errors {
+  text-align: center;
+  background-color: #FC9566;
+  display: inline-block;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  margin: 10px 0; }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; }
 
 button, .button {
   background-color: #9fe5cd;

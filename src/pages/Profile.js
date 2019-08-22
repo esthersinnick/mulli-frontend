@@ -61,49 +61,41 @@ class Profile extends Component {
           />
         </label> */}
 
-        <div>
-          <label htmlFor="name" />
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={name}
-            onChange={this.handleOnChange}
-          />
-        </div>
+        <label htmlFor="name" />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={name}
+          onChange={this.handleOnChange}
+        />
 
-        <div>
-          <label htmlFor="username" />
-          <input
-            type="text"
-            name="username"
-            id="username"
-            value={username}
-            onChange={this.handleOnChange}
-          />
-        </div>
+        <label htmlFor="username" />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={username}
+          onChange={this.handleOnChange}
+        />
 
-        <div>
-          <label htmlFor="instagram" />
-          <input
-            type="url"
-            name="instagram"
-            id="instagram"
-            value={instagram}
-            onChange={this.handleOnChange}
-          />
-        </div>
+        <label htmlFor="instagram" />
+        <input
+          type="url"
+          name="instagram"
+          id="instagram"
+          value={instagram}
+          onChange={this.handleOnChange}
+        />
 
-        <div>
-          <label htmlFor="website" />
-          <input
-            type="url"
-            name="website"
-            id="website"
-            value={website}
-            onChange={this.handleOnChange}
-          />
-        </div>
+        <label htmlFor="website" />
+        <input
+          type="url"
+          name="website"
+          id="website"
+          value={website}
+          onChange={this.handleOnChange}
+        />
 
         <button>Update profile</button>
       </form>

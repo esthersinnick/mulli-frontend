@@ -35,7 +35,7 @@ class Login extends Component {
     return (
       <>
         <Navbar />
-        <form onSubmit={this.handleFormSubmit}>
+        <form className="login-form" onSubmit={this.handleFormSubmit}>
           <label htmlFor="email">email:</label>
           <input
             id="email"
@@ -54,7 +54,12 @@ class Login extends Component {
             required
             onChange={this.handleChange}
           />
-          <input type="submit" value="Login" disabled={!email || !password} />
+          {errors && (
+            <div class="errors">
+              <p>{errors}</p>
+            </div>
+          )}
+          <button type="submit" disabled={!email || !password} >Log in</button>
         </form>
 
         <p>
@@ -62,11 +67,6 @@ class Login extends Component {
           <Link to={'/signup'}> Signup</Link>
         </p>
 
-        {errors && (
-          <div class="errors">
-            <p>{errors}</p>
-          </div>
-        )}
       </>
     );
   }

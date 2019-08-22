@@ -1,3 +1,93 @@
 form{
   @include flex-center(column);
 }
+
+form{
+  width:100%;
+  margin:0;
+  padding: 20px 0;
+  font-size: 1.1em;
+  span {
+    color: $dark-green;
+  }
+  label, div label{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $grey;
+    font-weight: 100;
+    text-align: center;
+    margin: 5% 0;
+    display: block;
+  }
+}
+
+input[type="file"] {
+  font-size: 0.7em;
+  background: white;
+  margin:6%;
+  color: $dark-green;
+  padding:3%;
+}
+input[type="text"], input[type="email"], input[type="password"],input[type="url"] {
+  text-align: center;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid $blue;
+  height: 40px;
+  padding: 20px;
+  width: 60%;
+  margin-bottom: 30px;
+  -webkit-transition: all 1s; /* Safari prior 6.1 */
+  transition: all 1s;
+  font-size: 0.8em;
+  color: $dark-green;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,input[type="url"]:focus{
+  outline: none;
+  width:80%;
+  border-bottom: 2px solid $dark-green;
+  -webkit-transition: all 0.5s; /* Safari prior 6.1 */
+  transition: all 0.5s;
+}
+input[type="text"]:disabled, input[type="email"]:disabled, input[type="password"]:disabled {
+  background-color: #94cbcf;
+  color: cadetblue;
+}
+select{
+  text-align: center;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid #259bab;
+  height: 40px;
+  padding: 5px;
+  width: 60%;
+  margin-bottom: 30px;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  color: $dark-green;
+  font-size: 0.8em;
+}
+
+select:focus{
+  outline: none;
+  border-bottom: 2px solid $dark-green;
+  -webkit-transition: all 0.5s; /* Safari prior 6.1 */
+  transition: all 0.5s;
+}
+
+.date{
+  display: flex;
+  justify-content: space-evenly;
+  input, select{
+    width:28%;
+  }
+
+  input{
+    padding: 12px;
+  }
+
+  input:focus{
+    width:28%;
+  }
+}
