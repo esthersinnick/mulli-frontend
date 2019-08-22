@@ -71,19 +71,12 @@ select, input[type="date"]{
   margin: 5px;
 }
 
-select:focus, , input[type="date"]:focus{
+select:focus, input[type="date"]:focus{
   outline: none;
   border-bottom: 2px solid $dark-green;
   -webkit-transition: all 0.5s; /* Safari prior 6.1 */
   transition: all 0.5s;
 }
-
-.date{
-  display: flex;
-  justify-content: space-evenly;
-  input, select{
-    width:28%;
-  }
 
   input{
     padding: 12px;
