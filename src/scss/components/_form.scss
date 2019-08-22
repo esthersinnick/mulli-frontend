@@ -55,6 +55,7 @@ input[type="text"]:disabled, input[type="email"]:disabled, input[type="password"
   background-color: #94cbcf;
   color: cadetblue;
 }
+
 select, input[type="date"]{
   text-align: center;
   background: none;
@@ -67,7 +68,6 @@ select, input[type="date"]{
   transition: all 1s;
   color: $dark-green;
   font-size: 0.8em;
-  width: 45%;
   margin: 5px;
 }
 
@@ -82,10 +82,6 @@ select:focus, input[type="date"]:focus{
     padding: 12px;
   }
 
-  input:focus{
-    width:28%;
-  }
-
 .challenge-form{
   button{
     margin-top: 20px;
@@ -98,4 +94,12 @@ form{
     color: #7a8389;
 
   }
+}
+
+select, select:focus{
+  width: 60%;
+}
+
+input[type="date"], input[type="date"]:focus{
+  width:45%;
 }

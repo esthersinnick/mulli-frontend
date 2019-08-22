@@ -209,7 +209,6 @@ select, input[type="date"] {
   transition: all 1s;
   color: #154B6B;
   font-size: 0.8em;
-  width: 45%;
   margin: 5px; }
 
 select:focus, input[type="date"]:focus {
@@ -222,15 +221,18 @@ select:focus, input[type="date"]:focus {
 input {
   padding: 12px; }
 
-input:focus {
-  width: 28%; }
-
 .challenge-form button {
   margin-top: 20px; }
 
 form button:disabled {
   background-color: #c0d3cc;
   color: #7a8389; }
+
+select, select:focus {
+  width: 60%; }
+
+input[type="date"], input[type="date"]:focus {
+  width: 45%; }
 
 .challenges-list {
   width: 100%; }
