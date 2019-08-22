@@ -228,6 +228,10 @@ input:focus {
 .challenge-form button {
   margin-top: 20px; }
 
+form button:disabled {
+  background-color: #c0d3cc;
+  color: #7a8389; }
+
 .challenges-list ul {
   display: flex;
   flex-direction: column;
@@ -461,6 +465,9 @@ input:focus {
       color: grey; }
       .auth-page form p a {
         color: #648ADF; }
+    .auth-page form .errors p {
+      color: white;
+      margin: 0; }
 
 .profile {
   color: #154B6B;

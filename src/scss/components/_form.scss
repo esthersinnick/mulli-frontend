@@ -91,3 +91,11 @@ select:focus, input[type="date"]:focus{
     margin-top: 20px;
   }
 }
+
+form{
+  button:disabled{
+    background-color: #c0d3cc;
+    color: #7a8389;
+
+  }
+}

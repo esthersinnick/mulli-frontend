@@ -57,6 +57,7 @@ class Signup extends Component {
                 <p>{errors}</p>
               </div>
             )}
+            {!password || !name || !username || !email ? <p className="advice">All fields are required</p> : null}
             <button type="submit" disabled={!password || !name || !username || !email}>Sign up</button>
             <p>
               Already have account?
