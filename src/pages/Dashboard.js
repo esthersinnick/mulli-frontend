@@ -37,6 +37,7 @@ class Dashboard extends Component {
     artService.getAllMyArts()
       .then(response => {
         const myArts = response.data.listOfArts;
+        console.log(response, response.data.listOfArts)
         this.setState({
           active: myArts.filter(art => art.challenge.status === "active"),
           voting: myArts.filter(art => art.challenge.status === "voting"),
