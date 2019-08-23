@@ -354,3 +354,44 @@
     fill:black;
   }
 }
+
+
+.closed{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  article{
+    width:90%;
+    margin:15px 0;
+    header{
+      background-color:$light-grey;
+      padding: 20px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+    main{
+
+    }
+    footer{
+      background-color:$light-grey;
+      padding: 20px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      p{
+        display: flex;
+        .heart{
+          height: 20px;
+          margin-right: 10px;
+        }
+        .medal{
+          height: 30px;
+          margin-right: 10px;
+        }
+        
+      }
+    }
+  }
+}

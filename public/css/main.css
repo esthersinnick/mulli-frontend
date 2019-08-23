@@ -510,6 +510,35 @@ input[type="date"], input[type="date"]:focus {
 .liked path {
   fill: black; }
 
+.closed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0; }
+  .closed article {
+    width: 90%;
+    margin: 15px 0; }
+    .closed article header {
+      background-color: #eef0f4;
+      padding: 20px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px; }
+    .closed article footer {
+      background-color: #eef0f4;
+      padding: 20px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      display: flex;
+      justify-content: space-between; }
+      .closed article footer p {
+        display: flex; }
+        .closed article footer p .heart {
+          height: 20px;
+          margin-right: 10px; }
+        .closed article footer p .medal {
+          height: 30px;
+          margin-right: 10px; }
+
 button, .button {
   background-color: #9fe5cd;
   border: none;

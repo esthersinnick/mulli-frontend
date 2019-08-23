@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import withAuth from '../components/withAuth';
 import UploadArtForm from '../components/UploadArtForm';
 import { ReactComponent as HeartIcon } from '../svg/heart.svg'
+import { ReactComponent as MedalIcon } from '../svg/award.svg'
 
 import challengeService from "../services/challenges-service";
 import artService from "../services/art-service";
@@ -269,19 +270,19 @@ class ChallengeDetail extends Component {
         {/* Si el estado es closed*/}
         {status === "closed" && arts ?
 
-          < section className="list-of-arts">
+          < section className="list-of-arts closed">
 
             {arts.map((art, index) => (
               <article key={art._id}>
                 <header>
-                  <p>${art.user.email}</p>
+                  <p>@{art.user.username}</p>
                 </header>
                 <main>
                   <img src={art.images[0]} alt={`illustration by ${art.user.email /* cambiar por name cuando haga el profile*/} for ${name}`} width="100%" />
                 </main>
                 <footer>
-                  <p>votes: {art.votes.length} </p>
-                  <p>Ranking:{index + 1}</p>
+                  <p><HeartIcon className="heart" /> {art.votes.length} </p>
+                  <p><MedalIcon className="medal" /> {index + 1}</p>
                 </footer>
 
               </article>
