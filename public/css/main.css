@@ -539,6 +539,10 @@ input[type="date"], input[type="date"]:focus {
           height: 30px;
           margin-right: 10px; }
 
+.challenges main .no-results {
+  margin-left: 20px;
+  color: #7d858a; }
+
 button, .button {
   background-color: #9fe5cd;
   border: none;

@@ -251,17 +251,19 @@ class ChallengeDetail extends Component {
           </section>
           : null}
 
-        {status === "voting" && arts ?
+        {status === "voting" && arts && myArt ?
           <section className="list-of-arts">
             <h2>Vote!</h2>
-            {arts.map((art, index) =>
-              art._id !== myArt._id &&
-              <article key={art._id} id={art._id}>
-                <main>
-                  {myVotesIds.includes(art._id) ? <HeartIcon className="like-button liked" onClick={() => { this.handleLikes(art._id) }} /> : <HeartIcon className="like-button" onClick={() => { this.handleLikes(art._id) }} />}
-                  <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
-                </main>
-              </article>
+            {arts.map((art, index) => {
+              return (
+                (art._id !== myArt._id &&
+                  <article key={art._id} id={art._id}>
+                    <main>
+                      {myVotesIds.includes(art._id) ? <HeartIcon className="like-button liked" onClick={() => { this.handleLikes(art._id) }} /> : <HeartIcon className="like-button" onClick={() => { this.handleLikes(art._id) }} />}
+                      <img src={art.images[0]} alt={`illustration ${index + 1} for ${name}`} width="100%" />
+                    </main>
+                  </article>))
+            }
             )}
           </section>
           : null

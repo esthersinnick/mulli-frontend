@@ -114,11 +114,12 @@ class ChallengeList extends Component {
 
         {challenges.length > 0 ? (
           <section className="challenges-list">
-            <section className="active-challenges">
+            <section className="challenges">
               <header>
                 <h2>Active</h2>
               </header>
               <main>
+                {this.activeChallenges.length === 0 && <p className="no-results">There are no results</p>}
                 <ul>
                   {this.activeChallenges.map(challenge => (
                     <ChallengeCard
@@ -137,11 +138,12 @@ class ChallengeList extends Component {
               </main>
             </section>
 
-            <section className="active-challenges">
+            <section className="challenges">
               <header>
                 <h2>Voting</h2>
               </header>
               <main>
+                {this.votingChallenges.length === 0 && <p className="no-results">There are no results</p>}
                 <ul>
                   {this.votingChallenges.map(challenge => (
                     <ChallengeCard
@@ -159,11 +161,12 @@ class ChallengeList extends Component {
               </main>
             </section>
 
-            <section className="active-challenges">
+            <section className="challenges">
               <header>
                 <h2>Closed</h2>
               </header>
               <main>
+                {this.closedChallenges.length === 0 && <p className="no-results">There are no results</p>}
                 <ul>
                   {this.closedChallenges.map(challenge => (
                     <ChallengeCard
